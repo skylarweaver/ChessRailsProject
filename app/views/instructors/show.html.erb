@@ -1,15 +1,84 @@
+<p id="notice"><%= notice %></p>
 <div class="row">
-  <div class="small-7 columns">
-    <!-- MAIN CONTENT GOES HERE -->
-    <%= render :partial => "instructor_details" %>
-  </div>
+  <div class="small-6 columns">
+    <h2>Instructor Details</h2>
 
-  <div class="small-1 columns">
-    &nbsp;
-  </div>
+    <p>
+      <strong>First name:</strong>
+      <%= "#{@instructor.first_name} #{@instructor.last_name}"%>
+    </p>
 
-  <div class="small-4 columns">
-    <!-- SIDEBAR CONTENT GOES HERE -->
-    <%= render partial: 'instructor_camps' %>
+    <p>
+      <strong>Bio:</strong>
+      <%= @instructor.bio %>
+    </p>
+
+    <p>
+      <strong>Email:</strong>
+      <%= mail_to("#{@instructor.email}", "#{@instructor.email}", :encode => "javascript") %>
+    </p>
+
+    <p>
+      <strong>Phone:</strong>
+      <%= number_to_phone(@instructor.phone) %>
+    </p>
+
+    <p>
+      <strong>Status:</strong>
+      <%= @status %>
+    </p>
+
+    <%= link_to 'Edit', edit_instructor_path(@instructor) %> |
+    <%= link_to 'Back', instructors_path %>
+  </div>
+  <div class="small-6 columns right">
+    <h2>Upcoming Camps</h2>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Camp</th>
+          <th>Date</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @upcomingCamps.each do |camp| %>
+          <tr>
+            <td><%= link_to "#{camp.name}", camp %></td>
+            <td><%= camp.start_date.to_formatted_s(:long) %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <span class="paginate">
+    <%= will_paginate @upcomingCamps, :previous_label => "Previous&nbsp;", :next_label => "&nbsp;Next" %>
+    </span>
+    <br><br>
+  </div>
+  <div class="small-6 columns right">
+    <h2>Past Camps</h2>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Camp</th>
+          <th>Date</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @pastCamps.each do |camp| %>
+          <tr>
+            <td><%= link_to "#{camp.name}", camp %></td>
+            <td><%= camp.start_date.to_formatted_s(:long) %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <span class="paginate">
+    <%= will_paginate @pastCamps, :previous_label => "Previous&nbsp;", :next_label => "&nbsp;Next" %>
+    </span>
+    <br><br>
   </div>
 </div>

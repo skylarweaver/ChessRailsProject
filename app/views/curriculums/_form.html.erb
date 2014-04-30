@@ -1,16 +1,31 @@
-<%= simple_form_for(@curriculum, html: { class: 'form-horizontal' }) do |f| %>
-   
-   <h3><%= controller.action_name.capitalize %> Curriculum</h3>
-    
-    <%= f.input :name %>
-    <%= f.input :description, input_html: { rows: 6 } %>
-    <%= f.input :min_rating %>
-    <%= f.input :max_rating %>
-    <%= f.input :active %>
+<%= simple_form_for @curriculum, html: { class: 'form-horizontal' } do |f| %>
+  <div class="row">
+    <div class="small-8 columns">
+      <fieldset>
+        <legend><%= controller.action_name.capitalize %> Curriculum</legend>
+        <div class="small-6 columns">
+          <%= f.input :name %>
+        </div>
 
-    <div class="form-actions">
-      <%= f.submit nil, class: 'button radius' %>
-      <%= link_to 'Back to list of curriculums', curriculums_path, :class => 'button secondary radius' %>
+        <div class="small-3 columns">
+          <%= f.input :min_rating%>
+        </div>
+        <div class="small-3 columns">
+          <%= f.input :max_rating%>
+        </div>
+        <div class="small-12 columns">
+          <%= f.input :description%>
+        </div>
+        <div class="small-12 center columns">
+          <%= f.input :active %>
+        </div>
+          <div class="form-actions small-6 columns">
+            <%= f.submit nil, class: 'button' %>
+          </div>
+          <% if controller.action_name == "edit" then %>
+            <%= link_to 'Destroy', @curriculum, method: :delete, class: "button tiny radius alert right small-2 columns" %>
+          <%end%>
+      </fieldset>
     </div>
-
+  </div>
 <% end %>

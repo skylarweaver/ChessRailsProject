@@ -1,15 +1,62 @@
 <div class="row">
-  <div class="small-7 columns">
-    <!-- MAIN CONTENT GOES HERE -->
-    <%= render :partial => "camp_details" %>
-  </div>
+  <div class="small-6 columns"
+    <p id="notice"><%= notice %></p>
+    <h2>Camp Details</h2>
 
-  <div class="small-1 columns">
-    &nbsp;
-  </div>
+    <p>
+      <strong>Name:</strong>
+      <%= @camp.name %>
+    </p>
 
-  <div class="small-4 columns">
-    <!-- SIDEBAR CONTENT GOES HERE -->
-    <%= render partial: 'camp_instructors' %>
+    <p>
+      <strong>Cost:</strong>
+      <%= number_to_currency(@camp.cost) %>
+    </p>
+
+    <p>
+      <strong>Dates:</strong>
+      <%= @dates %>
+    </p>
+
+    <p>
+      <strong>Time slot:</strong>
+      <%= @timeSlot %>
+    </p>
+
+    <p>
+      <strong>Max Enroll:</strong>
+      <%= @camp.max_students %>
+    </p>
+
+    <p>
+      <strong>Status:</strong>
+      <%= @status%>
+    </p>
+    <%= link_to 'Edit', edit_camp_path(@camp) %> |
+    <%= link_to 'Back', camps_path %>
+  </div>
+  <div class="small-6 columns">
+    <h2>Camp Instructors</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Bio</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @instructors.each do |instructor| %>
+          <tr>
+          <td><%= link_to "#{instructor.last_name}, #{instructor.first_name}", instructor %></td>
+            <td><%= instructor.bio %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <!-- Add the pagination using will_paginate gem -->
+    <span class="paginate">
+    <%= will_paginate @instructors, :previous_label => "Previous&nbsp;", :next_label => "&nbsp;Next" %>
+    </span>
+    <br><br>
   </div>
 </div>

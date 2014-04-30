@@ -1,15 +1,62 @@
+<p id="notice"><%= notice %></p>
 <div class="row">
-  <div class="small-7 columns">
-    <!-- MAIN CONTENT GOES HERE -->
-    <%= render :partial => "curriculum_details" %>
+    <div class="small-6 columns">
+      <h2>Curriculum Details</h2>
+    <p>
+      <strong>Name:</strong>
+      <%= @curriculum.name %>
+    </p>
+
+    <p>
+      <strong>Description:</strong>
+      <%= @curriculum.description %>
+    </p>
+
+    <p>
+      <strong>Ratings:</strong>
+      <%= "#{@curriculum.min_rating > 0 ? @curriculum.min_rating : "Unrated"} - #{@curriculum.max_rating}" %>
+    </p>
+
+    <p>
+      <strong>Status:</strong>
+      <%= @status %>
+    </p>
+
+    <%= link_to 'Edit', edit_curriculum_path(@curriculum) %> |
+    <%= link_to 'Back', curriculums_path %>
   </div>
 
-  <div class="small-1 columns">
-    &nbsp;
-  </div>
+  <div class="small-6 columns">
+    <h2>Associated Camps</h2>
+    <p>
+      <table>
+        <thead>
+          <tr>
+            <th>Camp</th>
+            <th>Cost</th>
+            <th>Start date</th>
+            <th>End date</th>
+            <th>Time slot</th>
+            <th>Status</th>
+          </tr>
+        </thead>
 
-  <div class="small-4 columns">
-    <!-- SIDEBAR CONTENT GOES HERE -->
-    <%= render partial: 'camps_using' %>
+        <tbody>
+          <% @camps.each do |camp| %>
+            <tr>
+              <td><%= link_to "#{camp.name}", camp %></td>              <td><%= number_to_currency(camp.cost) %></td>
+              <td><%= camp.start_date.to_formatted_s(:long) %></td>
+              <td><%= camp.end_date.to_formatted_s(:long) %></td>
+              <td><%= camp.time_slot %></td>
+              <td><%= camp.active ? "Active" : "Inactive" %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </p>
+    <span class="paginate">
+    <%= will_paginate @camps, :previous_label => "Previous&nbsp;", :next_label => "&nbsp;Next" %>
+    </span>
+    <br><br>
   </div>
 </div>

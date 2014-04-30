@@ -1,17 +1,37 @@
-<%= simple_form_for(@instructor, html: { class: 'form-horizontal' }) do |f| %>
-   
-   <h3><%= controller.action_name.capitalize %> Instructor</h3>
-    
-    <%= f.input :first_name %>
-    <%= f.input :last_name %>
-    <%= f.input :phone, as: :string %>
-    <%= f.input :email %>
-    <%= f.input :active %>
-    <%= f.input :bio, input_html: { rows: 6 } %>
-
-    <div class="form-actions">
-      <%= f.submit nil, class: 'button radius' %>
-      <%= link_to 'Back to list of instructors', instructors_path, :class => 'button secondary radius' %>
+<%= simple_form_for @instructor, html: { class: 'form-horizontal' } do |f| %>
+  <fieldset class="small-6 columns" >
+  <div class="row">
+    <div class="small-12 columns">
+        <legend><%= controller.action_name.capitalize %> Instructor</legend>
+          <div class="small-6 columns">
+            <%= f.input :first_name %>
+          </div>
+          <div class="small-6 columns">
+            <%= f.input :last_name%>
+          </div>
+          <div class="small-6 columns">  
+              <%= f.input :phone %>
+          </div>
+          <div class="small-6 columns">    
+            <%= f.input :email%>
+          </div>
+          <div class="small-12 columns">
+          <%= f.input :bio %>
+          </div>
+          <div class="small-12 columns">
+          <%= f.input :active%>
+        </div>
     </div>
-
+  </div>
+  <div class= "row">
+    <div class="small-12 columns">
+      <div class="small-6 columns form-actions">
+        <%= f.submit nil, class: 'button' %>
+      </div>
+      <% if controller.action_name == "edit" then %>
+        <%= link_to 'Destroy', @instructor, method: :delete, class: "button tiny radius alert right small-2 columns" %>
+      <%end%>
+    </div>
+  </div>
+  </fieldset>
 <% end %>

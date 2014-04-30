@@ -1,0 +1,135 @@
+/*
+.simple_form div.input {
+  margin-bottom: 10px;
+*/
+
+.button { 
+  color:white;
+}
+
+/*html{
+  background-color:#333;
+}
+*/
+body{
+  background-color: F0F0F0;
+  font-family: 'Noto Sans', sans-serif;
+}
+
+#topLinks{
+  margin-left: 2em;
+}
+
+.button.tiny.radius a{
+  color: white;
+}
+
+.button.tiny.radius{
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+.button.tiny.radius.alert{
+  margin-right: 1em;
+}
+
+.contain-to-grid{
+    border-bottom-right-radius:1em;
+  border-bottom-left-radius:1em;
+}
+.top-bar{
+  margin-left: auto;
+  margin-right:auto;
+  border-bottom-right-radius:1em;
+  border-bottom-left-radius:1em;
+}
+
+#navBar{
+  clear: both;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#main{
+  margin-left: 1em;
+}
+
+h1{
+  padding: 0.4em 0em 0.2em 0em
+}
+
+h1#navTitle{
+    padding: 0em
+}
+
+#navTitle{
+  font-family: 'Days One', sans-serif;
+}
+
+/*.top-bar-section ul {
+    background: none;
+    text-transform: uppercase;
+}
+
+.top-bar-section li a:not(.button) {
+    background: none;
+    line-height: 58px;
+    padding: 0 27px;
+*/
+/*.simple_form label {
+  float: left;
+  width: 100px;
+  text-align: right;
+  margin: 2px 10px;
+}*/
+
+/*div.boolean, .simple_form input[type='submit'] {
+  margin-left: 120px;
+}
+
+div.boolean label, label.collection_radio_buttons {
+  float: none;
+  margin: 0;
+}
+
+label.collection_radio_buttons {
+  margin-right: 10px;
+  vertical-align: -2px;
+  margin-left: 2px;
+}
+
+.field_with_errors {
+  background-color: #ff3333;
+}
+
+.simple_form .error {
+  clear: left;
+  color: black;
+  display: block;
+  margin-left: 120px;
+}
+
+.simple_form .hint {
+  clear: left;
+  margin-left: 120px;
+  color: #555;
+  display: block;
+  font-style: italic;
+}
+
+input.radio {
+  margin-right: 5px;
+  vertical-align: -3px;
+}
+
+input.check_boxes {
+  margin-left: 3px;
+  vertical-align: -3px;
+}
+
+label.collection_check_boxes {
+  float: none;
+  margin: 0;
+  vertical-align: -2px;
+  margin-left: 2px;
+}
+*/

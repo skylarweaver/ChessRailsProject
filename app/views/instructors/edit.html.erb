@@ -1,6 +1,9 @@
-<div class="row">
-  <div class="small-8 columns">
-    <%= render :partial => "form" %>
-  </div>
+<h1>Editing instructor</h1>
+<div class= "row">
+<%= render 'form' %>
 </div>
 
+<div class="row">
+	<%= link_to 'Show', @instructor %> |
+	<%= link_to 'Back', instructors_path %>
+</div>

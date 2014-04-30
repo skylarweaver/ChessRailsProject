@@ -1,27 +1,33 @@
-<h2>Contact A &amp; M Chess Camps</h2>
+<div id="main_content">
+<h1>Contact the A &amp; M Chess Camps</h1>
+<div class="row">
+	<div class="small-9 columns">
+		<p>Unfortunately, the A &amp; M Chess Camp is not a real business, but 
+			rather a course project for programming students at Carnegie Mellon University. We 
+			are sure that you wanted to participate in our classes and even get training   
+			from the best Chess Camp on the planet, but that's how it goes sometimes.  If you are 
+			bitterly disappointed (and quite honestly, you should be) and want to 
+			grouse to someone, here's the contact info:</p>
 
-<p> <%= image_tag 'Kelsey1.jpg', class: "left", width: 150 %>Despite the guilt trip we 
-  tried to lay on you in our <%= link_to "about page", about_path %>, the 
-  fact is that these camps are a fiction created for a class project for students at Carnegie Mellon University. No doubt you wanted to sign your 
-  child up for every camp we offer so they wouldn't lose every round at 
-  chess tournaments, but apparently you'll just have to keep getting used to losing.  
-  If you are bitterly disappointed (and quite honestly, you should be) and want to grouse to someone, here's the contact info:</p>
-
-<table cellpadding="3" class="table">
-  <tr>
-    <td>Webmaster:&nbsp;&nbsp;&nbsp;</td>
-    <td>Professor Larry Heimann</td>
-  </tr>
-  <tr>
-    <td>Email:</td>
-    <td>
-    <%= mail_to("profh@cmu.edu", "Prof. H", encode: "javascript") %> 
-    </td>
-  </tr>
-  <tr>
-    <td>Phone:</td>
-    <td>412-268-8211</td>
-  </tr>
-</table>
-
-<p><em>Note: We welcome your complaints and look forward to reading your letters of great anguish, but there is really nothing we can do for you. Do not expect a reply -- it will only add to your disappointment and despair.</em></p>
+		<table cellpadding="3">
+			<tr>
+				<td>Webmaster:&nbsp;&nbsp;&nbsp;</td>
+				<td> Skylar Weaver</td>
+			</tr>
+			<tr>
+				<td>Email:</td>
+				<td>
+				<%= mail_to("sweaver@cmu.edu", "Skylar Weaver", :encode => "javascript") %> 
+				</td>
+			</tr>
+			<tr>
+				<td>Phone:</td>
+				<td>717-460-6388</td>
+			</tr>
+		</table>
+	</div>
+	<div class="small-3 columns">
+	  	<%= image_tag('horse.png') %>
+	</div>
+</div>
+</div>

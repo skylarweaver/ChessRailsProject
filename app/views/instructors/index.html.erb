@@ -1,17 +1,62 @@
-<div class="row">
-  <div class="small-7 columns">
-    <!-- MAIN CONTENT GOES HERE -->
-    <%= render :partial => "active_instructors" %>
-    <br />
-    <%= link_to "Add a new instructor", new_instructor_path, class: "button tiny radius" %>
-  </div>
+<h1>Active Instructors</h1>
 
-  <div class="small-1 columns">
-    &nbsp;
-  </div>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Phone</th>
+      <th>Camps</th>
+      <th></th>
+    </tr>
+  </thead>
 
-  <div class="small-4 columns">
-    <!-- SIDEBAR CONTENT GOES HERE -->
-    <%= render partial: 'inactive_instructors' %>
-  </div>
-</div>
+  <tbody>
+    <% @instructors.each do |instructor| %>
+      <tr>
+        <td><%= link_to "#{instructor.last_name}, #{instructor.first_name}", instructor %></td>
+        <td><%= mail_to("#{instructor.email}", "#{instructor.email}", :encode => "javascript") %></td>
+        <td><%= number_to_phone(instructor.phone) %></td>
+        <td><%= instructor.camps.size %></td>
+        <td><%= link_to 'Edit', edit_instructor_path(instructor), class: "button tiny radius" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+    <span class="paginate">
+    <%= will_paginate @instructors, :previous_label => "Previous&nbsp;", :next_label => "&nbsp;Next" %>
+    </span>
+
+<br>
+
+<br> <br>
+<h2>Inactive Instructors</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @inactiveInstructors.each do |instructor| %>
+      <tr>
+        <td><%= link_to "#{instructor.last_name}, #{instructor.first_name}", instructor %></td>
+        <td><%= instructor.email %></td>
+        <td><%= link_to 'Edit', edit_instructor_path(instructor), class: "button tiny radius" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+    <span class="paginate">
+    <%= will_paginate @instructors, :previous_label => "Previous&nbsp;", :next_label => "&nbsp;Next" %>
+    </span>
+
+<br><br>
+
+<%= link_to 'New Instructor', new_instructor_path, class: "button extended round radius" %>

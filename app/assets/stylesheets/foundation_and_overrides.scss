@@ -1,3 +1,7 @@
+// Foundation by ZURB
+// foundation.zurb.com
+// Licensed under MIT Open Source
+
 //
 // FOUNDATION SETTINGS
 //
@@ -51,12 +55,12 @@
 // $default-float: left;
 
 // We use these as default colors throughout
-// $primary-color: #008CBA;
-// $secondary-color: #e7e7e7;
-// $alert-color: #f04124;
-$success-color: #B5EBC9;
-// $warning-color: #f08a24;
-// $info-color: #a0d3e8;
+$primary-color: #728497;
+$secondary-color: #948C75;
+$alert-color: #C44D58;
+$success-color: #A1A1A1;
+$warning-color: #FF6B6B;
+$info-color: #4ECDC4;
 
 // We use these to make sure border radius matches unless we want it different.
 // $global-radius: 3px;
@@ -114,7 +118,7 @@ $success-color: #B5EBC9;
 
 // We use these to control header font styles
 // $header-font-family: $body-font-family;
-// $header-font-weight: 300;
+// $header-font-weight: normal;
 // $header-font-style: normal;
 // $header-font-color: #222;
 // $header-line-height: 1.4;
@@ -240,7 +244,7 @@ $success-color: #B5EBC9;
 // We use these to control text style.
 // $alert-font-weight: normal;
 // $alert-font-size: rem-calc(13);
-$alert-font-color: #43AC6A;
+$alert-font-color: #fff;
 // $alert-font-color-alt: scale-color($secondary-color, $lightness: -66%);
 
 // We use this for close hover effect.
@@ -271,6 +275,7 @@ $alert-font-color: #43AC6A;
 // We use this to control the maximum number of block grid elements per row
 // $block-grid-elements: 12;
 // $block-grid-default-spacing: rem-calc(20);
+// $align-block-grid-to-grid: true;
 
 // Enables media queries for block-grid classes. Set to false if writing semantic HTML.
 // $block-grid-media-queries: true;
@@ -311,6 +316,9 @@ $alert-font-color: #43AC6A;
 
 // $include-html-button-classes: $include-html-classes;
 
+$button-tny-font-color: #fff;
+$button-radius-font-color: #fff;
+$button-alert-font-color: #fff;
 // We use these to build padding for buttons.
 // $button-tny: rem-calc(10);
 // $button-sml: rem-calc(14);
@@ -319,12 +327,12 @@ $alert-font-color: #43AC6A;
 
 // We use this to control the display property.
 // $button-display: inline-block;
-$button-margin-bottom: rem-calc(0);
+// $button-margin-bottom: rem-calc(20);
 
 // We use these to control button text styles.
 // $button-font-family: $body-font-family;
-// $button-font-color: #fff;
-// $button-font-color-alt: #333;
+ $button-font-color: #fff;
+ $button-font-color-alt: #fff;
 // $button-font-tny: rem-calc(11);
 // $button-font-sml: rem-calc(13);
 // $button-font-med: rem-calc(16);
@@ -351,7 +359,7 @@ $button-margin-bottom: rem-calc(0);
 // $include-html-button-classes: $include-html-classes;
 
 // Sets the margin for the right side by default, and the left margin if right-to-left direction is used
-// $button-bar-margin-opposite: rem-calc(10);
+//$button-bar-margin-opposite: rem-calc(100);
 // $button-group-border-width: 1px;
 
 // Clearing
@@ -588,7 +596,7 @@ $button-margin-bottom: rem-calc(0);
 
 // Keystrokes
 
-// $include-html-type-classes: $include-html-classes;
+// $include-html-keystroke-classes: $include-html-classes;
 
 // We use these to control text styles.
 // $keystroke-font: "Consolas", "Menlo", "Courier", monospace;
@@ -675,8 +683,10 @@ $button-margin-bottom: rem-calc(0);
 // $tabbar-menu-icon-padding: 0;
 
 // $tabbar-hamburger-icon-width: rem-calc(16);
-// $tabbar-hamburger-icon-left: rem-calc(13);
-// $tabbar-hamburger-icon-top: rem-calc(5);
+// $tabbar-hamburger-icon-left: false;
+// $tabbar-hamburger-icon-top: false;
+// $tapbar-hamburger-icon-thickness: 1px;
+// $tapbar-hamburger-icon-gap: 6px;
 
 // Off Canvas Back-Link Overlay
 // $off-canvas-overlay-transition: background 300ms ease;
@@ -762,7 +772,7 @@ $button-margin-bottom: rem-calc(0);
 // $include-html-panel-classes: $include-html-classes;
 
 // We use these to control the background and border styles
-$panel-bg: scale-color(#B5E7F5, $lightness: 50%);
+// $panel-bg: scale-color(#fff, $lightness: -5%);
 // $panel-border-style: solid;
 // $panel-border-size: 1px;
 
@@ -1028,16 +1038,16 @@ $panel-bg: scale-color(#B5E7F5, $lightness: 50%);
 // $include-html-table-classes: $include-html-classes;
 
 // These control the background color for the table and even rows
-// $table-bg: #fff;
-$table-even-row-bg: #FAF2F0;
+$table-bg: #FFCDCD;
+$table-even-row-bg: #FFB9B9  ;
 
 // These control the table cell border style
-$table-border-style: none;
+// $table-border-style: solid;
 // $table-border-size: 1px;
 // $table-border-color: #ddd;
 
 // These control the table head styles
-// $table-head-bg: #f5f5f5  ;
+ $table-head-bg: #FF5F5F  ;
 // $table-head-font-size: rem-calc(14);
 // $table-head-font-color: #222;
 // $table-head-font-weight: bold;
@@ -1051,7 +1061,7 @@ $table-border-style: none;
 
 // These are for controlling the display and margin of tables
 // $table-display: table-cell;
-$table-margin-bottom: rem-calc(25);
+// $table-margin-bottom: rem-calc(20);
 
 //
 // TABS
@@ -1123,40 +1133,43 @@ $table-margin-bottom: rem-calc(25);
 // $include-html-top-bar-classes: $include-html-classes;
 
 // Background color for the top bar
-$topbar-bg-color: #F7EAE6;
+//$topbar-bg-color: #333;
 // $topbar-bg: $topbar-bg-color;
 
 // Height and margin
-$topbar-height: 50px;
-$topbar-margin-bottom: 20px;
+// $topbar-height: 45px;
+// $topbar-margin-bottom: 0;
 
 // Controlling the styles for the title in the top bar
 // $topbar-title-weight: normal;
 // $topbar-title-font-size: rem-calc(17);
 
 // Style the top bar dropdown elements
-$topbar-dropdown-bg: #F7EAE6;
-$topbar-dropdown-link-color: #000;
-// $topbar-dropdown-link-bg: #F7EAE6;
+// $topbar-dropdown-bg: #333;
+// $topbar-dropdown-link-color: #fff;
+// $topbar-dropdown-link-bg: #333;
 // $topbar-dropdown-link-weight: normal;
 // $topbar-dropdown-toggle-size: 5px;
 // $topbar-dropdown-toggle-color: #fff;
 // $topbar-dropdown-toggle-alpha: 0.4;
 
 // Set the link colors and styles for top-level nav
-$topbar-link-color: #000;
-$topbar-link-color-hover: #333;
+// $topbar-link-color: #fff;
+$topbar-link-color-hover: #fff;
 // $topbar-link-color-active: #fff;
 // $topbar-link-color-active-hover: #fff;
 // $topbar-link-weight: normal;
-$topbar-link-font-size: rem-calc(18);
+// $topbar-link-font-size: rem-calc(13);
 // $topbar-link-hover-lightness: -10%; // Darken by 10%
-$topbar-link-bg-hover: #FAF2F0;
+// $topbar-link-bg-hover: #272727;
 // $topbar-link-bg-active: $primary-color;
 // $topbar-link-bg-active-hover: scale-color($primary-color, $lightness: -14%);
 // $topbar-link-font-family: $body-font-family;
+// $topbar-link-text-transform: none;
+// $topbar-link-padding: $topbar-height / 3;
 
 // $topbar-button-font-size: 0.75rem;
+// $topbar-button-top: 7px;
 
 // $topbar-dropdown-label-color: #777;
 // $topbar-dropdown-label-text-transform: uppercase;
@@ -1192,69 +1205,41 @@ $topbar-link-bg-hover: #FAF2F0;
 //
 
 // $include-html-visibility-classes: $include-html-classes;
+// $include-table-visibility-classes: true;
+// $include-legacy-visibility-classes: true;
 
-img.left {
-  float: left;
-  padding-right: 15px;
-  padding-bottom: 10px;
-  border: 0px;
-}
+//
+// RANGE SLIDER
+//
 
-img.right {
-  float: right;
-  padding-left: 15px;
-  padding-bottom: 10px;
-}
+// $include-html-range-slider-classes: $include-html-classes;
 
-a img {
-  /*float: left;*/
-  padding-right: 0px;
-  padding-bottom: 0px;
-  border: 0px;
-  text-decoration: none;
-}
+// These variabels define the slider bar styles
+// $range-slider-bar-width: 100%;
+// $range-slider-bar-height: rem-calc(16);
 
-#footer {
-  margin:0;
-  padding:10px 15px 5px 15px;
-  text-align:center;
-  font-size: 80%;
-}
+// $range-slider-bar-border-width: 1px;
+// $range-slider-bar-border-style: solid;
+// $range-slider-bar-border-color: #ddd;
+// $range-slider-radius: $global-radius;
+// $range-slider-round: $global-rounded;
+// $range-slider-bar-bg-color: #fafafa;
 
-#copy {
-  margin: 7px auto;
-  color:black;
-  text-align:center;
-  font-size:70%;
-}
+// Vertical bar styles
+// $range-slider-vertical-bar-width: rem-calc(16);
+// $range-slider-vertical-bar-height: rem-calc(200);
 
-#copy a {
-  text-decoration: none;
-}
-
-#copy a:hover {
-  text-decoration: underline;
-}
-
-.supertiny{
-  font-size:5px;
-  font-family:Verdana, Arial, Helvetica, sans-serif;
-  text-decoration:none;
-}
-
-.table {
-  border-collapse:collapse;
-}
-
-#past {
-  background-color: #FAF2F0;
-  border-color: #F7EAE6;
-
-}
-
-select.date { width: 95px; }
-#camp_time_slot, #camp_max_students, #camp_cost, #camp_curriculum_id { width: 290px; }
-#instructor_bio { height: 7rem; }
-#curriculum_description { height: 7rem; }
+// These variabels define the slider handle styles
+// $range-slider-handle-width: rem-calc(32);
+// $range-slider-handle-height: rem-calc(22);
+// $range-slider-handle-position-top: rem-calc(-5);
+// $range-slider-handle-bg-color: $primary-color;
+// $range-slider-handle-border-width: 1px;
+// $range-slider-handle-border-style: solid;
+// $range-slider-handle-border-color: none;
+// $range-slider-handle-radius: $global-radius;
+// $range-slider-handle-round: $global-rounded;
+// $range-slider-handle-bg-hover-color: scale-color($primary-color, $lightness: -12%);
+// $range-slider-handle-cursor: pointer;
 
 @import 'foundation';

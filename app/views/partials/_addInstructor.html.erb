@@ -1,0 +1,5 @@
+      <%= simple_form_for @camp, html: { class: 'form-horizontal' } do |f| %>
+      <fieldset>
+        <%= f.input :max_students, label: "Camp Instructors", collection: @allInstructors, as: :check_boxes %>
+      </
+      <%end%>

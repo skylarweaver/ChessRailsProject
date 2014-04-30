@@ -3,30 +3,64 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chess Camp &#8212; Summer 2014</title>
+    <%= favicon_link_tag 'favicon.ico' %>
+    <title><%= content_for?(:title) ? yield(:title) : "foundation-rails" %></title>
+    <link href='http://fonts.googleapis.com/css?family=Noto+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Days+One' rel='stylesheet' type='text/css'>
 
-    <title><%= content_for?(:title) ? yield(:title) : "A&M Chess Camps" %></title>
     <%= stylesheet_link_tag    "application" %>
+    <%= stylesheet_link_tag "styles"%>
     <%= javascript_include_tag "vendor/modernizr" %>
-    <%# javascript_include_tag "application" %> 
     <%= csrf_meta_tags %>
   </head>
 
   <body>
-    <%= render :partial => "partials/nav" %>
-    
-    <div class="row">
-      <div class="small-12 columns" id="main_content">
-        <%= render :partial => "partials/flash" %>
-        <%= yield %>
-      </div>
-    </div>
-    <footer>
-      <div class="row">
-        <div class="small-12 columns" id="footer">
-          <%= render partial: 'partials/footer' %>
+  
+  <div class="row">
+    <div class="contain-to-grid ">
+      <nav class="top-bar" data-topbar>
+        <div class="small-1">
         </div>
-      </div> 
-    </footer> 
-    <%= javascript_include_tag "application" %>
+        <div class="small-10 small-centered">
+          <ul class="title-area">
+            <li class="name ">
+              <h1 id="navTitle"><%= link_to "Chess Camp", home_path %></h1>
+            </li>
+          </ul>
+          <section class="top-bar-section">
+            <ul class="left"  id = "topLinks">
+              <li><%= link_to "Camps", camps_path %></li> 
+              <li><%= link_to "Curriculums", curriculums_path %></li>
+              <li><%= link_to "Instructors", instructors_path %></li>
+            </ul>
+          </section>
+        </div>
+      </nav>
+      </div>
+    <div class="small-1">
+    </div>
+  </div>
+  <% flash.each do |name, msg| %>
+    <!-- alert box goes here-->
+    <div class="alert-box <%= :notice ? "success" : "warning" %> radius small-8 small-push-2 text-center">
+      <a href="#" class="close">&times;</a>
+      <%= msg %>
+    </div>
+  <% end %>
+  <div class="row">
+    <div id="main" class="small-12 columns">
+      <!-- MAIN CONTENT GOES HERE -->
+      <%= yield %>
+      <%= javascript_include_tag "application" %>
+    </div>
+  </div>
+  <footer>
+    <div class="row">
+      <div class="small-6 large-centered columns">
+        <%= render partial: 'partials/footer' %>
+      </div>
+    </div> 
+  </footer>     
   </body>
 </html>

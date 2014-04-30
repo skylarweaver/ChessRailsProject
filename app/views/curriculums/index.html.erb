@@ -1,17 +1,56 @@
-<div class="row">
-  <div class="small-7 columns">
-    <!-- MAIN CONTENT GOES HERE -->
-    <%= render :partial => "active_curriculums" %>
-    <br />
-    <%= link_to "Add a new curriculum", new_curriculum_path, class: "button tiny radius" %>
-  </div>
+<h1>Active Curriculums</h1>
 
-  <div class="small-1 columns">
-    &nbsp;
-  </div>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Ratings</th>
+      <th>Times Used</th>
+      <th></th>
+    </tr>
+  </thead>
 
-  <div class="small-4 columns">
-    <!-- SIDEBAR CONTENT GOES HERE -->
-    <%= render partial: 'inactive_curriculums' %>
-  </div>
-</div>
+  <tbody>
+    <% @curriculums.each do |curriculum| %>
+      <tr>
+        <td><%= link_to "#{curriculum.name}", curriculum %></td>
+        <td><%= "#{curriculum.min_rating > 0 ? curriculum.min_rating : "Unrated"} - #{curriculum.max_rating}" %></td>
+        <td><%= curriculum.camps.size %></td>
+        <td ><%= link_to 'Edit', edit_curriculum_path(curriculum), class: "button tiny radius" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+    <span class="paginate">
+    <%= will_paginate @curriculums, :previous_label => "Previous&nbsp;", :next_label => "&nbsp;Next" %>
+    </span>
+<br>
+
+<br> <br>
+<h2>Inactive Curriculums</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Ratings</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @inactiveCurriculums.each do |curriculum| %>
+      <tr>
+        <td><%= link_to "#{curriculum.name}", curriculum %></td>
+        <td><%= "#{curriculum.min_rating > 0 ? curriculum.min_rating : "Unrated"} - #{curriculum.max_rating}" %></td>
+        <td ><%= link_to 'Edit', edit_curriculum_path(curriculum), class: "button tiny radius" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+    <span class="paginate">
+    <%= will_paginate @curriculums, :previous_label => "Previous&nbsp;", :next_label => "&nbsp;Next" %>
+    </span>
+<br><br>
+<%= link_to 'New Curriculum', new_curriculum_path, class: "button round radius"%>
