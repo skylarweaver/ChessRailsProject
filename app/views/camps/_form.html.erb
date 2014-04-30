@@ -8,7 +8,7 @@
       <%= f.input :cost, required: true %>
       <%= f.input :end_date %>
       <%= f.input :max_students%>
-      <% if controller.action_name == "edit" then %>
+      <% if controller.action_name == "edit" && @camp.active then %>
         <%= f.input :instructor_ids, label: "Camp Instructors:", collection: @allInstructors, as: :check_boxes %> 
       <%end%>
     <div class="form-actions">
