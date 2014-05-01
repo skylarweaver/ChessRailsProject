@@ -16,7 +16,6 @@ class UserTest < ActiveSupport::TestCase
   should_not allow_value("leader").for(:role)
   should_not allow_value(nil).for(:role)
   
-  
   # context
   context "Within context" do
     setup do

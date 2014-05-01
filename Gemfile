@@ -53,6 +53,10 @@ gem 'carrierwave'
 # Use ActiveModel has_secure_password
 gem 'bcrypt-ruby', '3.1.5'
 
+#for nested form
+gem 'nested_form'
+gem 'turbolinks'
+
 # Additional gems that are very useful in Rails development
 group :development do
   gem 'quiet_assets'
