@@ -10,15 +10,18 @@ class LocationsController < ApplicationController
   # GET /locations/1
   # GET /locations/1.json
   def show
+    @location= Location.find(params[:id])
+    @location.active ? @status = "Active" : @status = "Inactive"
+    @camps = Camp.upcoming.for_location(@location.id).chronological.paginate(page: params[:page]).per_page(4)
   end
 
   # GET /locations/new
   def new
-    @location = Location.new
   end
 
   # GET /locations/1/edit
   def edit
+
   end
 
   # POST /locations

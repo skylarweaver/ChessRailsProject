@@ -57,6 +57,15 @@ gem 'bcrypt-ruby', '3.1.5'
 gem 'nested_form'
 gem 'turbolinks'
 
+#for the google map
+gem 'gmaps4rails'
+
+#underscore rails for map
+gem 'underscore-rails'
+
+#authorizatino
+gem 'cancancan', '~> 1.7'
+
 # Additional gems that are very useful in Rails development
 group :development do
   gem 'quiet_assets'

@@ -16,7 +16,7 @@
       <tr>
         <td><%= link_to "#{instructor.last_name}, #{instructor.first_name}", instructor %></td>
         <td><%= mail_to("#{instructor.email}", "#{instructor.email}", :encode => "javascript") %></td>
-        <td><%= number_to_phone(instructor.phone) %></td>
+        <td><%= number_to_phone(instructor.phone, area_code: true) %></td>
         <td><%= instructor.camps.size %></td>
         <td><%= link_to 'Edit', edit_instructor_path(instructor), class: "button tiny radius" %></td>
       </tr>

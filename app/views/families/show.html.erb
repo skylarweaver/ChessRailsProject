@@ -12,17 +12,17 @@
 
 <p>
   <strong>Email:</strong>
-  <%= @family.email %>
+  <%= mail_to(@family.email, "#{@family.email}", :encode => "javascript") %>
 </p>
 
 <p>
   <strong>Phone:</strong>
-  <%= @family.phone %>
+  <%= number_to_phone(@family.phone, area_code: true) %>
 </p>
 
 <p>
-  <strong>Active:</strong>
-  <%= @family.active %>
+  <strong>Status:</strong>
+  <%= @status %>
 </p>
 
 <%= link_to 'Edit', edit_family_path(@family) %> |

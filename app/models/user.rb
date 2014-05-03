@@ -22,5 +22,8 @@ class User < ActiveRecord::Base
     return false if role.nil?
     role.downcase.to_sym == authorized_role
   end
+  def self.authenticate(username,password)
+    find_by_email(username).try(:authenticate, password)
+  end
 
 end

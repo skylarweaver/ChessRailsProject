@@ -10,6 +10,8 @@ class FamiliesController < ApplicationController
   # GET /families/1
   # GET /families/1.json
   def show
+    @family= Family.find(params[:id])
+    @family.active ? @status = "Active" : @status = "Inactive"
   end
 
   # GET /families/new

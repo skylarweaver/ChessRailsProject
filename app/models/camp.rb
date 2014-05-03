@@ -32,6 +32,7 @@ class Camp < ActiveRecord::Base
   scope :upcoming, -> { where('start_date >= ?', Date.today) }
   scope :past, -> { where('end_date < ?', Date.today) }
   scope :for_curriculum, ->(curriculum_id) { where("curriculum_id = ?", curriculum_id) }
+  scope :for_location, -> (location_id) {where("location_id = ?", location_id)}
 
   # instance methods
   def name

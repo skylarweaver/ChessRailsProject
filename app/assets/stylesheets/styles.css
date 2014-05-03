@@ -65,6 +65,10 @@ h1#navTitle{
   font-family: 'Days One', sans-serif;
 }
 
+/*for maps*/
+#map label { width: auto; display:inline; }
+#map img { max-width: none; }
+
 /*.top-bar-section ul {
     background: none;
     text-transform: uppercase;

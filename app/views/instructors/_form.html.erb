@@ -21,17 +21,17 @@
           <div class="small-12 columns">
           <%= i_form.input :active%>
         </div>
-    </div>
+    <!--nested form start-->
+    <!-- if instructor has no user, option to add user -->
       <% if @instructor.user.nil? then%>
         <div class="small-8 columns">
           <legend>Add a user to this Instructor</legend>
             <div id="instructor_users">
               <%= i_form.simple_fields_for :user do |user_form| %>
-               <fieldset class="small-12 columns" >
                 <div class="row">
                   <div class="small-12 columns">
                       <!--<legend><%= controller.action_name.capitalize %> User</legend>-->
-                        <div class="small-6 columns">
+                        <div class="small-12 columns">
                             <%= user_form.input :username%>
                         </div>
                         <div class="small-6 columns">
@@ -40,20 +40,21 @@
                         <div class="small-6 columns">  
                             <%= user_form.input :role%>
                         </div>
-                        <div class="small-12 columns">
+                        <div class="small-6 columns">
                             <%= user_form.input :active%>
-                      </div>
-                    </div>
+                        </div>
                   </div>
+                </div>
               <% end %>
-              <p>
-                <br /><%= i_form.link_to_add("Add User", :user, :class => 'button tiny') %>
-              </p>
+
             </div> 
           </div>
+      </div>
+      <!-- if already has a user, give option to destroy-->
       <%else%>
-        <div class="small-8 colums">
-          <%=@instructor.user.username%>
+        <div class="small-8 columns">
+          <p><strong>Current User:</strong></p>
+          <%="#{@instructor.user.username} ::"%>
           <td><%= link_to 'Destroy', @instructor.user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         </div>
       <%end%>

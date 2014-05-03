@@ -1,54 +1,105 @@
-<p id="notice"><%= notice %></p>
+<div class="row">
+  <div class="small-12 columns">
+    <div class = "small-3 columns">
+      <p id="notice"><%= notice %></p>
+      <h2>Details</h2>
+      <p>
+        <strong>Name:</strong>
+        <%= @location.name %>
+      </p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @location.name %>
-</p>
+      <p>
+        <strong>Street 1:</strong>
+        <%= @location.street_1 %>
+      </p>
 
-<p>
-  <strong>Street 1:</strong>
-  <%= @location.street_1 %>
-</p>
+      <p>
+        <strong>Street 2:</strong>
+        <%= @location.street_2 %>
+      </p>
 
-<p>
-  <strong>Street 2:</strong>
-  <%= @location.street_2 %>
-</p>
+      <p>
+        <strong>City:</strong>
+        <%= @location.city %>
+      </p>
 
-<p>
-  <strong>City:</strong>
-  <%= @location.city %>
-</p>
+      <p>
+        <strong>State:</strong>
+        <%= @location.state %>
+      </p>
 
-<p>
-  <strong>State:</strong>
-  <%= @location.state %>
-</p>
+      <p>
+        <strong>Zip:</strong>
+        <%= @location.zip %>
+      </p>
 
-<p>
-  <strong>Zip:</strong>
-  <%= @location.zip %>
-</p>
+      <p>
+        <strong>Max capacity:</strong>
+        <%= @location.max_capacity %>
+      </p>
 
-<p>
-  <strong>Max capacity:</strong>
-  <%= @location.max_capacity %>
-</p>
-
-<p>
-  <strong>Latitude:</strong>
-  <%= @location.latitude %>
-</p>
-
-<p>
-  <strong>Longitude:</strong>
-  <%= @location.longitude %>
-</p>
-
-<p>
-  <strong>Active:</strong>
-  <%= @location.active %>
-</p>
+      <p>
+        <strong>Status:</strong>
+        <%= @status %>
+      </p>
+    </div>
+      <div class="small-7 columns right">
+      <h2>Camps at <%=@location.name%></h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Start Date</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @camps.each do |camp| %>
+              <tr>
+              <td><%= link_to "#{camp.name}", camp%></td>
+                <td><%= camp.start_date %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+        <!-- Add the pagination using will_paginate gem -->
+        <span class="paginate">
+        <%= will_paginate @camps, :previous_label => "Previous&nbsp;", :next_label => "&nbsp;Next" %>
+        </span>
+        <br><br>
+      </div>
+      <div class="small-7 columns right"> 
+        <h2>Location Map</h2>
+        <div >
+          <div id="map" style='width: 600px; height: 300px;'></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 <%= link_to 'Edit', edit_location_path(@location) %> |
 <%= link_to 'Back', locations_path %>
+
+
+<!--javascript-->
+<script>
+  console.log("POOOOOOOO")
+  handler = Gmaps.build('Google');
+  handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
+    markers = handler.addMarkers([
+      {
+        "lat": <%=@location.latitude%>,
+        "lng": <%=@location.longitude%>,
+        "picture": {
+          "url": "http://www.signegeneve.ch/wp-content/themes/parallelus-salutation/assets/images/gmap-marker.png",
+          "width":  36,
+          "height": 36,
+        },
+        "infowindow":"hello",
+      }
+    ]);
+    handler.bounds.extendWith(markers);
+    handler.fitMapToBounds();
+    handler.getMap().setZoom(12);
+  });
+</script>
