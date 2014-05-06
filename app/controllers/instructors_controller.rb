@@ -1,5 +1,7 @@
 class InstructorsController < ApplicationController
   before_action :set_instructor, only: [:show, :edit, :update, :destroy]
+  before_action :check_login
+  authorize_resource
 
   # GET /instructors
   # GET /instructors.json
@@ -10,7 +12,7 @@ class InstructorsController < ApplicationController
 
   end
 
-  # GET /instructors/1
+  # GET /instructors/e
   # GET /instructors/1.json
   def show
     @instructor = Instructor.find(params[:id])
@@ -18,19 +20,25 @@ class InstructorsController < ApplicationController
     @upcomingCamps = @instructor.camps.upcoming.chronological.paginate(page: params[:page]).per_page(4)
     @pastCamps = @instructor.camps.past.chronological.paginate(page: params[:page]).per_page(4)
     @instructor.active ? @status = "Active" : @status = "Inactive"
+    if @instructor.user.present? then
+      @role = @instructor.user.role
+      @username = @instructor.user.username
+    end
   end
 
   # GET /instructors/new
   def new
     @instructor = Instructor.new
-    @instructor.user.build
+    #should do something here with the build and what if there is no user
+    @instructor.build_user
   end
 
   # GET /instructors/1/edit
   def edit
     @instructor = Instructor.find(params[:id])
+    # authorize! :edit, @instructor
     if @instructor.user.nil?
-      # @instructor.user.build
+      @instructor.build_user
     end
   end
 
@@ -82,6 +90,6 @@ class InstructorsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def instructor_params
-      params.require(:instructor).permit(:first_name, :last_name, :bio, :email, :phone, :active, user_attributes: [:id, :username, :password, :password_confirmation, :instructor_id])
+      params.require(:instructor).permit(:first_name, :last_name, :bio, :photo, :email, :phone, :active, user_attributes: [:id, :username, :password, :password_confirmation, :instructor_id, :role])
     end
 end

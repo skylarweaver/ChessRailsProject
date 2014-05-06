@@ -4,10 +4,14 @@
   <div class="form-inputs">
     <%= f.input :first_name %>
     <%= f.input :last_name %>
-    <%= f.input :family_id %>
-    <%= f.input :date_of_birth %>
+    <%=  f.input :family_id , label: "Family Name", label_method: :family_name, collection: Family.active.alphabetical, as: :select%>
+    <% if controller.action_name == "edit" then%>
+      <%= f.input :date_of_birth, as: :string, :input_html => {value: localize(@student.date_of_birth, format: "%m/%d/%Y"), :class => "small-3 columns avg datepicker"} %>
+    <%else%>
+      <%= f.input :date_of_birth, as: :string, :input_html => {:class => "small-3 columns avg datepicker"} %>
+    <%end%>
     <%= f.input :rating %>
-    <%= f.input :active %>
+    <%= f.input :active, inline_label: "Active:" %>
   </div>
 
   <div class="form-actions">

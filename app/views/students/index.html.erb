@@ -1,37 +1,57 @@
-<h1>Listing students</h1>
+<h2>Listing Students</h2>
 
 <table>
   <thead>
     <tr>
-      <th>First name</th>
-      <th>Last name</th>
-      <th>Family</th>
-      <th>Date of birth</th>
+      <th>Name</th>
+      <th>Age</th>
       <th>Rating</th>
-      <th>Active</th>
-      <th></th>
-      <th></th>
-      <th></th>
+      <% if can? :edit, Student%>
+        <th></th>
+      <%end%>
     </tr>
   </thead>
 
   <tbody>
-    <% @students.each do |student| %>
-      <tr>
-        <td><%= student.first_name %></td>
-        <td><%= student.last_name %></td>
-        <td><%= student.family_id %></td>
-        <td><%= student.date_of_birth %></td>
-        <td><%= student.rating %></td>
-        <td><%= student.active %></td>
-        <td><%= link_to 'Show', student %></td>
-        <td><%= link_to 'Edit', edit_student_path(student) %></td>
-        <td><%= link_to 'Destroy', student, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+    <% @allStudents.each do |student| %>
+        <tr>
+          <td><%=link_to "#{student.last_name}, #{student.first_name}",student %></td>
+          <td><%= student.age %></td>
+          <td><%= student.rating == 0 ? "Unrated" : student.rating %> </td>
+          <% if can? :edit, student%>
+            <td><%= link_to 'Edit', edit_student_path(student) %></td>
+          <%end%>
+        </tr>
     <% end %>
   </tbody>
 </table>
-
 <br>
 
-<%= link_to 'New Student', new_student_path %>
+<h2>Listing Inactive Students</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Age</th>
+      <% if can? :edit, Student%>
+        <th></th>
+      <%end%>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @inactiveStudents.each do |student| %>
+        <tr>
+          <td><%=link_to "#{student.last_name}, #{student.first_name}",student %></td>
+          <td><%= student.age %></td>
+          <% if can? :edit, student%>
+            <td><%= link_to 'Edit', edit_student_path(student) %></td>
+          <%end%>
+        </tr>
+    <% end %>
+  </tbody>
+</table>
+<br>
+
+<%= link_to 'New Student', new_student_path, class: "button extended round radius" %>

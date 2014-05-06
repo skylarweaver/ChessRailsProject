@@ -1,34 +1,69 @@
-<p id="notice"><%= notice %></p>
+<div class="small-5 left">
+  <h2>Student Details</h2>
+  <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>First name:</strong>
-  <%= @student.first_name %>
-</p>
+  <p>
+    <strong>First name:</strong>
+    <%= "#{@student.first_name} #{@student.last_name}" %>
+  </p>
 
-<p>
-  <strong>Last name:</strong>
-  <%= @student.last_name %>
-</p>
+  <p>
+    <strong>Family:</strong>
+    <%= @student.family_id %>
+  </p>
 
-<p>
-  <strong>Family:</strong>
-  <%= @student.family_id %>
-</p>
+  <p>
+    <strong>Age:</strong>
+    <%= @student.age %>
+  </p>
 
-<p>
-  <strong>Date of birth:</strong>
-  <%= @student.date_of_birth %>
-</p>
+  <p>
+    <strong>Date of birth:</strong>
+    <%= @student.date_of_birth.strftime("%m/%d/%Y") %>
+  </p>
 
-<p>
-  <strong>Rating:</strong>
-  <%= @student.rating %>
-</p>
+  <p>
+    <strong>Rating:</strong>
+    <%= @student.rating == 0 ? "Unrated" : @student.rating %>
+  </p>
 
-<p>
-  <strong>Active:</strong>
-  <%= @student.active %>
-</p>
+  <%if can? :read, Family%>
+    <p>
+      <strong>Family:</strong>
+      <%= link_to @student.family.family_name, family_path(@student.family.id)%>
+    </p>
+  <%end%>
+
+  <p>
+    <strong>Active:</strong>
+    <%= @status%>
+  </p>
+</div>
+
+  <div class="small-7 columns right">
+    <h2>Registrations</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Camp Name</th>
+          <th>Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @registrations.each do |registration| %>
+          <tr>
+            <td><%=link_to "#{registration.camp.name}", registration.camp%></td>
+            <td><%= registration.camp.start_date.strftime("%m/%d/%y") %></td>
+          </tr>
+        <%end%>
+      </tbody>
+    </table>
+    <!-- Add the pagination using will_paginate gem -->
+    <span class="paginate">
+    <%= will_paginate @registrations, :previous_label => "Previous&nbsp;", :next_label => "&nbsp;Next" %>
+    </span>
+    <br><br>
+  </div>
 
 <%= link_to 'Edit', edit_student_path(@student) %> |
 <%= link_to 'Back', students_path %>

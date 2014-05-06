@@ -1,40 +1,23 @@
 <div class="row">
   <div class="small-12 columns">
-    <div class = "small-3 columns">
+    <div class = "small-5 columns">
+      <h2>Location Details</h2>
       <p id="notice"><%= notice %></p>
-      <h2>Details</h2>
       <p>
         <strong>Name:</strong>
         <%= @location.name %>
       </p>
 
       <p>
-        <strong>Street 1:</strong>
-        <%= @location.street_1 %>
+        <strong>Address:</strong><br>
+        <%= @location.street_1 %><br>
+        <%= @location.street_2 if !@location.street_2.blank? %>
+        <%= raw("<br>") if !@location.street_2.blank? %>
+        <%= "#{@location.city}, #{@location.state} #{@location.zip}"%>
       </p>
 
       <p>
-        <strong>Street 2:</strong>
-        <%= @location.street_2 %>
-      </p>
-
-      <p>
-        <strong>City:</strong>
-        <%= @location.city %>
-      </p>
-
-      <p>
-        <strong>State:</strong>
-        <%= @location.state %>
-      </p>
-
-      <p>
-        <strong>Zip:</strong>
-        <%= @location.zip %>
-      </p>
-
-      <p>
-        <strong>Max capacity:</strong>
+        <strong>Maximum Capacity:</strong>
         <%= @location.max_capacity %>
       </p>
 
@@ -79,7 +62,7 @@
 
 <%= link_to 'Edit', edit_location_path(@location) %> |
 <%= link_to 'Back', locations_path %>
-
+<br><br>
 
 <!--javascript-->
 <script>

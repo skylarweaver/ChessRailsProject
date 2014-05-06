@@ -2,14 +2,20 @@
   <%= simple_form_for @camp, html: { class: 'form-horizontal' } do |f| %>
     <fieldset class="small-9 columns">
       <legend><%= controller.action_name.capitalize %> Camp</legend>
-      <%=  f.input :curriculum_id, label: "Curriculum Name (do this in model?)", collection: Curriculum.active.alphabetical, as: :select%>
-      <%= f.input :start_date, class: "small-3 columns" %>
+      <%=  f.input :curriculum_id, label: "Curriculum Name", collection: Curriculum.active.alphabetical, as: :select%>
+        <%= f.input :start_date, as: :date, order: [:month, :day, :year], include_blank: true, start_year: Date.today.year - 1, end_year: Date.today.year + 1 %>
+        <%= f.input :end_date, as: :date, order: [:month, :day, :year], include_blank: true, start_year: Date.today.year - 1, end_year: Date.today.year + 1 %>
       <%= f.input :time_slot, collection: [["Morning", "am"], ["Afternoon", "pm"]], as: :select, selected: "Morning"%>
       <%= f.input :cost, required: true %>
-      <%= f.input :end_date %>
+      <% if controller.action_name == "edit" then%>
+        <%= f.input :end_date, as: :string, :input_html => {value: localize(@camp.end_date, format: "%m/%d/%Y"),  :class => "small-3 columns avg datepicker"} %>
+      <%else%>
+        <%= f.input :end_date, as: :string, :input_html => { :class => "small-3 columns avg datepicker"} %>
+      <%end%>
       <%= f.input :max_students%>
+      <%= f.input :location_id, label: "Location", collection: Location.active.alphabetical, as: :select%>
       <% if controller.action_name == "edit" && @camp.active then %>
-        <%= f.input :instructor_ids, label: "Camp Instructors:", collection: @allInstructors, as: :check_boxes %> 
+      <%= f.input :instructor_ids, label: "Camp Instructors:", collection: @allInstructors, as: :check_boxes %> 
       <%end%>
     <div class="form-actions">
       <%= f.submit nil, class: 'button small-4 columns' %>

@@ -29,12 +29,20 @@
     </p>
 
     <p>
+      <strong>Location:</strong>
+      <%= link_to "#{@camp.location.name}", location_path(@camp.location)%>
+    </p>
+
+    <p>
       <strong>Status:</strong>
       <%= @status%>
     </p>
-    <%= link_to 'Edit', edit_camp_path(@camp) %> |
+    <% if can? :update, Camp %>
+      <%= link_to 'Edit', edit_camp_path(@camp) %> |
+    <%end%>
     <%= link_to 'Back', camps_path %>
   </div>
+
   <div class="small-7 columns right">
     <h2>Camp Instructors</h2>
     <table>
@@ -47,7 +55,11 @@
       <tbody>
         <% @instructors.each do |instructor| %>
           <tr>
-          <td><%= link_to "#{instructor.last_name}, #{instructor.first_name}", instructor %></td>
+          <% if current_user.present? %>
+            <td><%= link_to "#{instructor.last_name}, #{instructor.first_name}", instructor %></td>
+          <%else%>
+            <td><%="#{instructor.last_name}, #{instructor.first_name}"%></td>
+          <%end%>
             <td><%= instructor.bio %></td>
           </tr>
         <% end %>
@@ -61,16 +73,40 @@
   </div>
   <div class="small-7 columns right">
     <div >
-      <h2>Camp Loction</h2>
+      <h2>Camp Location</h2>
       <div id="map" style='width: 500px; height: 250px;'></div>
     </div>
   </div>
 </div>
 
+  <div class="small-7 columns left">
+    <h2><%="Registrations (#{@registrationSize})"%></h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Student Name</th>
+          <th>Rating</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @registrations.each do |registration| %>
+          <tr>
+            <td><%=link_to "#{registration.student.last_name}, #{registration.student.first_name}", registration.student %></td>
+            <td><%= registration.student.rating %></td>
+          </tr>
+        <%end%>
+      </tbody>
+    </table>
+    <!-- Add the pagination using will_paginate gem -->
+    <span class="paginate">
+    <%= will_paginate @registrations, :previous_label => "Previous&nbsp;", :next_label => "&nbsp;Next" %>
+    </span>
+    <br><br>
+  </div>
+
 
 <!--javascript-->
 <script>
-  console.log("POOOOOOOO")
   handler = Gmaps.build('Google');
   handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
     markers = handler.addMarkers([

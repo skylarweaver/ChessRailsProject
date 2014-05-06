@@ -1,29 +1,83 @@
-<p id="notice"><%= notice %></p>
+<div class="small-5 columns left">
+  <h2>Family Details</h2>
+  <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Family name:</strong>
-  <%= @family.family_name %>
-</p>
+  <p>
+    <strong>Family Name:</strong>
+    <%= @family.family_name %>
+  </p>
 
-<p>
-  <strong>Parent first name:</strong>
-  <%= @family.parent_first_name %>
-</p>
+  <p>
+    <strong>Parent First Name:</strong>
+    <%= @family.parent_first_name %>
+  </p>
 
-<p>
-  <strong>Email:</strong>
-  <%= mail_to(@family.email, "#{@family.email}", :encode => "javascript") %>
-</p>
+  <p>
+    <strong>Email:</strong>
+    <%= mail_to(@family.email, "#{@family.email}", :encode => "javascript") %>
+  </p>
 
-<p>
-  <strong>Phone:</strong>
-  <%= number_to_phone(@family.phone, area_code: true) %>
-</p>
+  <p>
+    <strong>Phone:</strong>
+    <%= number_to_phone(@family.phone) %>
+  </p>
 
-<p>
-  <strong>Status:</strong>
-  <%= @status %>
-</p>
+  <p>
+    <strong>Active:</strong>
+    <%= @status %>
+  </p>
+</div>
+  <div class="small-7 columns right">
+    <h2>Students</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @students.each do |student| %>
+          <tr>
+            <td><%=link_to "#{student.first_name}", student %></td>
+          </tr>
+        <%end%>
+      </tbody>
+    </table>
+    <!-- Add the pagination using will_paginate gem -->
+    <span class="paginate">
+    <%= will_paginate @students, :previous_label => "Previous&nbsp;", :next_label => "&nbsp;Next" %>
+    </span>
+    <br><br>
+  </div>
+
+    <div class="small-7 columns right">
+    <h2>Upcoming Camps</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Camp Name</th>
+          <th>Student Name</th>
+          <th>Date</th>
+          <th>Location</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @upcomingCamps.each do |name, camp| %>
+          <tr>
+            <td><%= link_to camp.name, camp_path(camp.id) %></td>
+            <td><%= name %></td>
+            <td><%= camp.start_date %></td>
+            <td><%= camp.location.name %></td>
+          </tr>
+        <%end%>
+      </tbody>
+    </table>
+    <!-- Add the pagination using will_paginate gem -->
+    <span class="paginate">
+    <%= will_paginate @students, :previous_label => "Previous&nbsp;", :next_label => "&nbsp;Next" %>
+    </span>
+    <br><br>
+  </div>
 
 <%= link_to 'Edit', edit_family_path(@family) %> |
 <%= link_to 'Back', families_path %>

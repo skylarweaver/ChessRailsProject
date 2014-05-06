@@ -4,8 +4,16 @@
     <h2>Instructor Details</h2>
 
     <p>
-      <strong>First name:</strong>
+      <strong>Name:</strong>
       <%= "#{@instructor.first_name} #{@instructor.last_name}"%>
+    </p>
+
+    <p>
+    <% if @band.photo_url.nil? || @band.photo_url.include?("missing") %>
+      <%= image_tag "missing.png" %>
+    <% else %>
+      <%= image_tag @band.photo_url %>
+    <% end %>
     </p>
 
     <p>
@@ -20,7 +28,17 @@
 
     <p>
       <strong>Phone:</strong>
-      <%= number_to_phone(@instructor.phone, area_code: true) %>
+      <%= number_to_phone(@instructor.phone) %>
+    </p>
+
+    <p>
+      <strong>Username:</strong>
+      <%= @username %>
+    </p>
+
+    <p>
+      <strong>Role:</strong>
+      <%= @role %>
     </p>
 
     <p>
@@ -28,7 +46,9 @@
       <%= @status %>
     </p>
 
-    <%= link_to 'Edit', edit_instructor_path(@instructor) %> |
+    <% if can? :edit, @instructor%>
+      <%= link_to 'Edit', edit_instructor_path(@instructor) %> |
+    <%end%>
     <%= link_to 'Back', instructors_path %>
   </div>
   <div class="small-6 columns right">

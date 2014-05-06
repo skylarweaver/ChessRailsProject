@@ -1,0 +1,81 @@
+<h3>Welcome back, <%= "#{current_user.instructor.first_name}"%></h3>
+
+<h6>Below is information on your assigned upcoming camps and your personal information.</h6>
+
+<div class = "row">
+	<div class = "small-6 colums left">
+		<h2>Your Upcoming Camps</h2>
+		<table>
+		  <thead>
+		    <tr>
+		      <th>Name</th>
+		      <th>Start Date</th>
+		      <th>Time Slot</th>
+		      <% if can? :update, Camp %>
+		        <th></th>
+		      <%end%>
+		    </tr>
+		  </thead>
+		  <tbody>
+		    <% @personalUpcomingCamps.each do |camp| %>
+		      <tr>
+		        <td><%= link_to "#{camp.name}", camp %></td>
+		        <td><%= camp.start_date.strftime("%m/%d/%y") %></td>
+		        <td><%= camp.time_slot == "am" ? "Morning" : "Afternoon"%></td>
+		        <% if can? :update, camp %>
+		          <td ><%= link_to 'Edit', edit_camp_path(camp), class: "button tiny radius" %></td>
+		        <%end%>
+		        </tr> 
+		    <% end %>
+		  </tbody>
+		</table>
+
+		<!-- Add the pagination using will_paginate gem -->
+		<span class="paginate">
+		<%= will_paginate @personalUpcomingCamps, :previous_label => "Previous&nbsp;", :next_label => "&nbsp;Next" %>
+		</span>
+		<br> <br>
+	</div>
+	<div class = "small-6 colums right">
+		<h2>Your Personal Info</h2>
+    <p>
+      <strong>Name:</strong>
+      <%= "#{@instructor.first_name} #{@instructor.last_name}"%>
+    </p>
+
+    <p>
+      <strong>Bio:</strong>
+      <%= @instructor.bio %>
+    </p>
+
+    <p>
+      <strong>Email:</strong>
+      <%= mail_to("#{@instructor.email}", "#{@instructor.email}", :encode => "javascript") %>
+    </p>
+
+    <p>
+      <strong>Phone:</strong>
+      <%= number_to_phone(@instructor.phone) %>
+    </p>
+
+    <p>
+      <strong>Username:</strong>
+      <%= @username %>
+    </p>
+
+    <p>
+      <strong>Role:</strong>
+      <%= @role %>
+    </p>
+
+    <p>
+      <strong>Status:</strong>
+      <%= @status %>
+    </p>
+
+    <% if can? :edit, @instructor%>
+      <%= link_to 'Edit', edit_instructor_path(@instructor) %>
+    <%end%>
+		<br> <br>
+	</div>
+</div>

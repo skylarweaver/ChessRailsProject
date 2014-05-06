@@ -1,12 +1,16 @@
 class CampsController < ApplicationController
   before_action :set_camp, only: [:show, :edit, :update, :destroy]
-
+  before_action :check_login, except: [:index, :show]
+  authorize_resource
 
   # GET /camps
   # GET /camps.json
   def index
     @camps = Camp.active.chronological.paginate(page: params[:page]).per_page(10)
+    @upcomingCamps = Camp.active.upcoming.chronological.paginate(page: params[:page]).per_page(10)
+    @pastCamps = Camp.active.past.chronological.paginate(page: params[:page]).per_page(10)
     @inactiveCamps =  Camp.inactive.chronological.paginate(page: params[:page]).per_page(10)
+    @user = current_user
   end
 
   # GET /camps/1
@@ -14,11 +18,12 @@ class CampsController < ApplicationController
   def show
     @camp = Camp.find(params[:id])
     @camp.time_slot == "am" ? @timeSlot = "Morning" : @timeSlot = "Afternoon"
-    @instructors = @camp.instructors.alphabetical.paginate(page: params[:page]).per_page(4)
     @location = @camp.location
-    
+    @registrations = @camp.registrations.paginate(page: params[:page]).per_page(4)
+    @instructors = @camp.instructors.alphabetical.paginate(page: params[:page]).per_page(4)
     @dates = "#{@camp.start_date.strftime("%m/%d/%y")} - #{@camp.end_date.strftime("%m/%d/%y")}"
     @camp.active ? @status = "Active" : @status = "Inactive"
+    @registrationSize = @camp.registrations.size
 
   end
 
@@ -61,7 +66,7 @@ class CampsController < ApplicationController
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
-        format.json { render json: @camp.errors, status: :unprocessable_entity }
+        format.jdson { render json: @camp.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -69,6 +74,7 @@ class CampsController < ApplicationController
   # DELETE /camps/1
   # DELETE /camps/1.json
   def destroy
+    authorize! destroy, @camp
     @camp.destroy
     respond_to do |format|
       format.html { redirect_to camps_url, notice: "#{@camp.name} was removed from the system." }

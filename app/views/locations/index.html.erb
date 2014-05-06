@@ -1,20 +1,11 @@
-<h1>Listing locations</h1>
+<h2>Listing Locations</h2>
 
 <table>
   <thead>
     <tr>
       <th>Name</th>
-      <th>Street 1</th>
-      <th>Street 2</th>
-      <th>City</th>
-      <th>State</th>
-      <th>Zip</th>
-      <th>Max capacity</th>
-      <th>Latitude</th>
-      <th>Longitude</th>
-      <th>Active</th>
-      <th></th>
-      <th></th>
+      <th>Address</th>
+      <th>Capacity</th>
       <th></th>
     </tr>
   </thead>
@@ -22,19 +13,15 @@
   <tbody>
     <% @locations.each do |location| %>
       <tr>
-        <td><%= location.name %></td>
-        <td><%= location.street_1 %></td>
-        <td><%= location.street_2 %></td>
-        <td><%= location.city %></td>
-        <td><%= location.state %></td>
-        <td><%= location.zip %></td>
-        <td><%= location.max_capacity %></td>
-        <td><%= location.latitude %></td>
-        <td><%= location.longitude %></td>
-        <td><%= location.active %></td>
-        <td><%= link_to 'Show', location %></td>
+        <td> <%=link_to location.name, location %></td>
+        <td>
+          <%= location.street_1 %><br>
+          <%= location.street_2 if !location.street_2.blank? %>
+          <%= raw("<br>") if !location.street_2.blank? %>
+          <%= "#{location.city}, #{location.state} #{location.zip}"%>
+        </td>
+        <td> <%=location.max_capacity%></td>
         <td><%= link_to 'Edit', edit_location_path(location) %></td>
-        <td><%= link_to 'Destroy', location, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -42,4 +29,30 @@
 
 <br>
 
-<%= link_to 'New Location', new_location_path %>
+<h2>Listing Inactive Locations</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Street 1</th>
+      <th>City</th>
+      <th>State</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @inactiveLocations.each do |location| %>
+      <tr>
+        <td> <%=link_to location.name, location %></td>
+        <td><%= location.street_1 %></td>
+        <td><%= location.city %></td>
+        <td><%= location.state %></td>
+        <td><%= link_to 'Edit', edit_location_path(location) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'New Location', new_location_path, class: "button extended round radius" %>

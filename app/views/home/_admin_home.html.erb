@@ -1,0 +1,66 @@
+<h3>Welcome back, <%= "#{current_user.instructor.first_name}"%></h3>
+
+<p>Below is information on your assigned upcoming camps and your personal information.</p>
+
+<div class = "row">
+	<div class = "small-5 colums left">
+		<h2>All Upcoming Camps</h2>
+		<table>
+		  <thead>
+		    <tr>
+		      <th>Name</th>
+		      <th>Start Date</th>
+		      <th>Number Instructors</th>
+		      <th>Number Registrants</th>
+		    </tr>
+		  </thead>
+		  <tbody>
+		    <% @upcomingCamps.each do |camp| %>
+		      <tr>
+		        <td><%= link_to "#{camp.name}", camp %></td>
+		        <td><%= camp.start_date.strftime("%m/%d/%y") %></td>
+		        <td><%= camp.instructors.size %></td>
+		        <td><%= camp.students.size %></td>
+		        </tr>
+		    <% end %>
+		  </tbody>
+		</table>
+
+		<!-- Add the pagination using will_paginate gem -->
+		<span class="paginate">
+		<%= will_paginate @upcomingCamps, :previous_label => "Previous&nbsp;", :next_label => "&nbsp;Next" %>
+		</span>
+		<br> <br>
+	</div>
+	<div class = "small-6 colums right">
+		<h2>Instructors Overview</h2>
+		<table>
+		  <thead>
+		    <tr>
+		      <th>Name</th>
+		      <th>Email</th>
+		      <th>Number of Camps</th>
+		      <th>Next Camp</th>
+		      <th></th>
+		    </tr>
+		  </thead>
+
+		  <tbody>
+		    <% @instructors.each do |instructor| %>
+		      <tr>
+		        <td><%= link_to "#{instructor.last_name}, #{instructor.first_name}", instructor %></td>
+		        <td><%= mail_to("#{instructor.email}", "#{instructor.email}", :encode => "javascript") %></td>
+		        <td><%= instructor.camps.size %></td>
+		        <td><%= instructor.camps.chronological.first.start_date.strftime("%m/%d/%y")%></td>
+		        <% if can? :edit, instructor%>
+		          <td><%= link_to 'Edit', edit_instructor_path(instructor), class: "button tiny radius" %></td>
+		        <%end%>
+		      </tr>
+		    <% end %>
+		  </tbody>
+		</table>
+		<span class="paginate">
+		<%= will_paginate @instructors, :previous_label => "Previous&nbsp;", :next_label => "&nbsp;Next" %>
+		</span>
+		<br><br>
+</div>

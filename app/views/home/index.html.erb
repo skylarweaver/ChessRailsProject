@@ -1,5 +1,7 @@
-<%# if current_user && current_user.is_admin? %>
-<%# render :partial => "admin_home" %>
-<%# else %>
+<% if current_user && current_user.role == "admin" %>
+	<%= render :partial => "admin_home" %>
+<% elsif current_user && current_user.role == "instructor" %>
+	<%= render partial: "instructor_home"%>
+<% else %>
   <%= render :partial => "general_home" %>
-<%# end %>
+<% end %>

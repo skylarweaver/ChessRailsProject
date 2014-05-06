@@ -1,22 +1,25 @@
-<h1>Active Camps</h1>
+<h2>Upcoming Camps</h2>
 
 <table>
   <thead>
     <tr>
       <th>Name</th>
-      <th>Start date</th>
-      <th>Time slot</th>
-      <th></th>
+      <th>Start Date</th>
+      <th>Time Slot</th>
+      <% if can? :update, Camp %>
+        <th></th>
+      <%end%>
     </tr>
   </thead>
-
   <tbody>
-    <% @camps.each do |camp| %>
+    <% @upcomingCamps.each do |camp| %>
       <tr>
         <td><%= link_to "#{camp.name}", camp %></td>
         <td><%= camp.start_date.strftime("%m/%d/%y") %></td>
         <td><%= camp.time_slot == "am" ? "Morning" : "Afternoon"%></td>
-        <td ><%= link_to 'Edit', edit_camp_path(camp), class: "button tiny radius" %></td>
+        <% if can? :update, camp %>
+          <td ><%= link_to 'Edit', edit_camp_path(camp), class: "button tiny radius" %></td>
+        <%end%>
         </tr>
     <% end %>
   </tbody>
@@ -27,32 +30,43 @@
 <%= will_paginate @camps, :previous_label => "Previous&nbsp;", :next_label => "&nbsp;Next" %>
 </span>
 <br> <br>
-<h2>Inactive Camps</h2>
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Start date</th>
-      <th></th>
-    </tr>
-  </thead>
 
-  <tbody>
-    <% @inactiveCamps.each do |camp| %>
+<% if current_user.present? %> 
+ <h2>Past Camps</h2>
+  <table>
+    <thead>
       <tr>
-        <td><%= link_to "#{camp.name}", camp %></td>
-        <td><%= camp.start_date.strftime("%m/%d/%y") %></td>
-        <td ><%= link_to 'Edit', edit_camp_path(camp), class: "button tiny radius" %></td>
-        </tr>
-    <% end %>
-  </tbody>
-</table>
+        <th>Name</th>
+        <th>Start date</th>
+        <% if can? :update, Camp %>
+          <th></th>
+        <%end%>
+      </tr>
+    </thead>
+    
+    <tbody>
+      <% @pastCamps.each do |camp| %>
+        <tr>
+          <td><%= link_to "#{camp.name}", camp %></td>
+          <td><%= camp.start_date.strftime("%m/%d/%y") %></td>
+          <% if can? :update, camp %>
+            <td ><%= link_to 'Edit', edit_camp_path(camp), class: "button tiny radius" %></td>
+          <% end %>
+          </tr>
+      <% end %>
+    </tbody>
+  </table>
 
-<!-- Add the pagination using will_paginate gem -->
-<span class="paginate">
-<%= will_paginate @camps, :previous_label => "Previous&nbsp;", :next_label => "&nbsp;Next" %>
-</span>
-
+  <!-- Add the pagination using will_paginate gem -->
+  <span class="paginate">
+  <%= will_paginate @pastCamps, :previous_label => "Previous&nbsp;", :next_label => "&nbsp;Next" %>
+  </span>
+<%end%>
 <br>
 
-<%= link_to 'New Camp', new_camp_path, class: "button extended round radius"  %>
+<% if can? :create, Camp %>
+  <%= link_to 'New Camp', new_camp_path, class: "button extended round radius"  %>
+<%end%>
+<% if can? :create, Registration%>
+<%= link_to 'New Registration', new_registration_path, class: "button extended round radius" %>
+<%end%>

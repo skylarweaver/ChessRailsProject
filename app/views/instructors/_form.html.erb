@@ -1,7 +1,7 @@
 <%= simple_nested_form_for @instructor, html: { class: 'form-horizontal' } do |i_form| %>
-  <fieldset class="small-6 columns" >
+  <fieldset class="small-6 columns centered" >
   <div class="row">
-    <div class="small-12 columns">
+    <div class="small-12 columns center">
         <legend><%= controller.action_name.capitalize %> Instructor</legend>
           <div class="small-6 columns">
             <%= i_form.input :first_name %>
@@ -18,55 +18,56 @@
           <div class="small-12 columns">
           <%= i_form.input :bio %>
           </div>
-          <div class="small-12 columns">
-          <%= i_form.input :active%>
-        </div>
+          <div class = "small-6 columns">
+            <%= i_form.input :photo%>
+          </div>
+          <% if current_user.nil? || current_user.role == "Instructor"%>
+            <div class="small-12 columns">
+              <%= i_form.input :active%>
+            </div>
+          <%end%>
+          <br>
     <!--nested form start-->
-    <!-- if instructor has no user, option to add user -->
-      <% if @instructor.user.nil? then%>
-        <div class="small-8 columns">
-          <legend>Add a user to this Instructor</legend>
+        <div class="small-8 columns center">
+          <legend>Add a user to this Instructor</legend><br>
             <div id="instructor_users">
               <%= i_form.simple_fields_for :user do |user_form| %>
                 <div class="row">
                   <div class="small-12 columns">
-                      <!--<legend><%= controller.action_name.capitalize %> User</legend>-->
                         <div class="small-12 columns">
                             <%= user_form.input :username%>
                         </div>
                         <div class="small-6 columns">
-                            <%= user_form.input :password_digest%>
-                        </div>
-                        <div class="small-6 columns">  
-                            <%= user_form.input :role%>
+                            <%= user_form.input :password%>
                         </div>
                         <div class="small-6 columns">
-                            <%= user_form.input :active%>
+                            <%= user_form.input :password_confirmation, label: "Confirm Password"%>
                         </div>
+                        <% if current_user.nil? || current_user.role != "Instructor"%>
+                          <div class="small-6 columns">  
+                              <%= user_form.input :role, collection: User::ROLES, :prompt => true%>
+                          </div>
+                          <div class="small-6 columns">
+                              <%= user_form.input :active%>
+                          </div>
+                        <%end%>
                   </div>
                 </div>
               <% end %>
-
             </div> 
           </div>
       </div>
-      <!-- if already has a user, give option to destroy-->
-      <%else%>
-        <div class="small-8 columns">
-          <p><strong>Current User:</strong></p>
-          <%="#{@instructor.user.username} ::"%>
-          <td><%= link_to 'Destroy', @instructor.user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        </div>
-      <%end%>
     </div>
-  </div>
+    <br>
   <div class= "row">
     <div class="small-12 columns">
       <div class="small-6 columns form-actions">
         <%= i_form.submit nil, class: 'button' %>
       </div>
       <% if controller.action_name == "edit" then %>
-        <%= link_to 'Destroy', @instructor, method: :delete, class: "button tiny radius alert right small-2 columns" %>
+        <% if current_user.nil? || current_user.role == "Instructor"%>
+          <%= link_to 'Destroy', @instructor, method: :delete, class: "button tiny radius alert right small-2 columns" %>
+        <%end%>
       <%end%>
     </div>
   </div>

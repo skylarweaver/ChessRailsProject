@@ -2,9 +2,9 @@
   <%= f.error_notification %>
 
   <div class="form-inputs">
-    <%= f.input :camp_id %>
-    <%= f.input :student_id %>
-    <%= f.input :payment_status %>
+    <%=  f.input :camp_id, label: "Camp Name", label_method: :name, collection: Camp.active.alphabetical, as: :select%>    
+    <%=  f.input :student_id, label: "Student Name", collection: Student.active.alphabetical, as: :select%> 
+    <%= f.input :payment_status, collection: ["deposit", "full"], as: :select %>
     <%= f.input :points_earned %>
   </div>
 

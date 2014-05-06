@@ -1,26 +1,47 @@
 <div id="main_content">
 	<div class="row">
-		  <h1>Welcome to A &amp; M Chess Camps</h1>
-		<div class="small-9 columns">
-		  <p>
-		   This is the main page for  A &amp; M Chess Camps, hosted by the 
-		    A &amp; M Chess Camps. There is not much to do here yet (more coming...) 
-		    until you log in.  You can, however, read our fine lorem ipsum text below.
-		  </p>
-			<p>
-			  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed 
-				do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-				Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris 
-				nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in 
-				reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla 
-				pariatur. Excepteur sint occaecat cupidatat non proident, sunt in 
-				culpa qui officia deserunt mollit anim id est laborum.
-			</p>
+		<div class = "row">
+		    <h2>Welcome to A &amp; M Chess Camps</h2>
 		</div>
-		<div class="small-3  columns">
-			<div class="well">
-		  	<%= image_tag('horse.png') %>
+		<div class="small-9 columns left">
+		    <div class= "row">
+		    	<div class = "small-4 columns left">
+					<div class="well">
+					  	<%= image_tag('horse.png') %>
+					</div>
+				</div>
+			<div class = "small-8 columns right">
+			  <p>
+			   This is the main page for  A &amp; M Chess Camps, hosted by the 
+			    A &amp; M Chess Camps. There is not much to do here yet (more coming...) 
+			    until you log in.  You can read more details below.
+			  </p>
+				<p>
+				This was a web app created for 67-272 Web Application Development. From the databse design, to planning out the user experience to the actual coding, I created this app from the groud up. 
+				<br><br>
+				There is limited funcitonality until you login. You can login as an instructor for more functionality or and admin for total functionality. Instructor username: 'patrick'; instructor passsword: 'secret'. Admin username: 'austin'; admin password: 'secret'. Enjoy!
+				</p>
 			</div>
+			</div>
+		</div>
+		<div class= "small-3 columns right">
+			<h3>Upcoming Camps</h3>
+			<table>
+			  <thead>
+			    <tr>
+			      <th>Name</th>
+			      <th>Start Date</th>
+			    </tr>
+			  </thead>
+			  <tbody>
+			    <% @upcomingCamps[0..3].each do |camp| %>
+			      <tr>
+			        <td><%= link_to "#{camp.name}", camp %></td>
+			        <td><%= camp.start_date.strftime("%m/%d/%y") %></td>
+			        </tr>
+			    <% end %>
+			  </tbody>
+			</table>
 		</div>
 	</div> 
 </div>

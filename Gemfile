@@ -66,6 +66,11 @@ gem 'underscore-rails'
 #authorizatino
 gem 'cancancan', '~> 1.7'
 
+#Datepicker
+gem 'foundation-datetimepicker-rails'
+gem 'jquery-ui-rails'
+
+
 # Additional gems that are very useful in Rails development
 group :development do
   gem 'quiet_assets'

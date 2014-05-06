@@ -49,6 +49,12 @@ body{
   margin-right: auto;
 }
 
+.loginInfo{
+  color: white;
+  font-size: 0.8125rem;
+  padding-right: 12px;
+}
+
 #main{
   margin-left: 1em;
 }
@@ -68,6 +74,11 @@ h1#navTitle{
 /*for maps*/
 #map label { width: auto; display:inline; }
 #map img { max-width: none; }
+
+#login{
+  font-size: 0.8125rem;
+  margin-top: 2px;
+}
 
 /*.top-bar-section ul {
     background: none;

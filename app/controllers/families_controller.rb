@@ -1,17 +1,28 @@
 class FamiliesController < ApplicationController
   before_action :set_family, only: [:show, :edit, :update, :destroy]
+  before_action :check_login
+  authorize_resource
 
   # GET /families
   # GET /families.json
   def index
-    @families = Family.all
+    @inactiveFamilies = Family.inactive.alphabetical.paginate(page: params[:page]).per_page(10)
+    @families = Family.active.alphabetical.paginate(page: params[:page]).per_page(10)
   end
 
   # GET /families/1
   # GET /families/1.json
   def show
     @family= Family.find(params[:id])
-    @family.active ? @status = "Active" : @status = "Inactive"
+    @family.active ? @status = "Yes" : @status = "No"
+    @students = @family.students.paginate(page: params[:page]).per_page(10)
+    @upcomingCamps=Hash.new
+    @students.each do |student|
+      @camps = student.camps.active.upcoming
+      @camps.each do |camp|
+        @upcomingCamps["#{student.first_name}"] = camp
+      end
+    end
   end
 
   # GET /families/new
@@ -30,7 +41,7 @@ class FamiliesController < ApplicationController
 
     respond_to do |format|
       if @family.save
-        format.html { redirect_to @family, notice: 'Family was successfully created.' }
+        format.html { redirect_to @family, notice: "#{@family.family_name} family was added to the system." }
         format.json { render action: 'show', status: :created, location: @family }
       else
         format.html { render action: 'new' }
@@ -44,7 +55,7 @@ class FamiliesController < ApplicationController
   def update
     respond_to do |format|
       if @family.update(family_params)
-        format.html { redirect_to @family, notice: 'Family was successfully updated.' }
+        format.html { redirect_to @family, notice: "#{@family.family_name} family was revised in the system." }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
