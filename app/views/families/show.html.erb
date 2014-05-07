@@ -29,6 +29,9 @@
 </div>
   <div class="small-7 columns right">
     <h2>Students</h2>
+  
+    <% if @students.size > 0 %>
+
     <table>
       <thead>
         <tr>
@@ -50,8 +53,16 @@
     <br><br>
   </div>
 
+  <%else%>
+    <br>
+    <h5>There are no students associted with this family in the system</h5>
+  <%end%>
+
     <div class="small-7 columns right">
     <h2>Upcoming Camps</h2>
+  
+    <% if @upcomingCamps.size > 0 %>
+
     <table>
       <thead>
         <tr>
@@ -76,6 +87,10 @@
     <span class="paginate">
     <%= will_paginate @students, :previous_label => "Previous&nbsp;", :next_label => "&nbsp;Next" %>
     </span>
+    <%else%>
+      <br>
+      <h5>There are no ucpoming camps for this family in the system</h5>
+    <%end%>
     <br><br>
   </div>
 

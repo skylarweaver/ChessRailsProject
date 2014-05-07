@@ -5,6 +5,7 @@
 <div class = "row">
 	<div class = "small-6 colums left">
 		<h2>Your Upcoming Camps</h2>
+		<% if @personalUpcomingCamps.size > 0 %>
 		<table>
 		  <thead>
 		    <tr>
@@ -34,6 +35,10 @@
 		<span class="paginate">
 		<%= will_paginate @personalUpcomingCamps, :previous_label => "Previous&nbsp;", :next_label => "&nbsp;Next" %>
 		</span>
+		<%else%>
+		  <br>
+		  <h5>You have no upcoming camps in the system</h5>
+		<%end%>
 		<br> <br>
 	</div>
 	<div class = "small-6 colums right">

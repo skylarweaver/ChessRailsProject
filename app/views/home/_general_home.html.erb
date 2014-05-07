@@ -26,6 +26,7 @@
 		</div>
 		<div class= "small-3 columns right">
 			<h3>Upcoming Camps</h3>
+			<% if @upcomingCamps.size > 0 %>
 			<table>
 			  <thead>
 			    <tr>
@@ -43,5 +44,9 @@
 			  </tbody>
 			</table>
 		</div>
+		<%else%>
+		  <br>
+		  <h5>There are no upcoming camps in the system</h5>
+		<%end%>
 	</div> 
 </div>

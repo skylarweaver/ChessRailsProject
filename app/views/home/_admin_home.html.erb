@@ -5,6 +5,7 @@
 <div class = "row">
 	<div class = "small-5 colums left">
 		<h2>All Upcoming Camps</h2>
+		<% if @upcomingCamps.size > 0 %>
 		<table>
 		  <thead>
 		    <tr>
@@ -30,10 +31,15 @@
 		<span class="paginate">
 		<%= will_paginate @upcomingCamps, :previous_label => "Previous&nbsp;", :next_label => "&nbsp;Next" %>
 		</span>
+		<%else%>
+		  <br>
+		  <h5>There are no ucpoming camps in the system</h5>
+		<%end%>
 		<br> <br>
 	</div>
 	<div class = "small-6 colums right">
 		<h2>Instructors Overview</h2>
+		<% if @instructors.size > 0 %>
 		<table>
 		  <thead>
 		    <tr>
@@ -64,5 +70,9 @@
 		<span class="paginate">
 		<%= will_paginate @instructors, :previous_label => "Previous&nbsp;", :next_label => "&nbsp;Next" %>
 		</span>
+		<%else%>
+		  <br>
+		  <h5>There are no active instructors in the system</h5>
+		<%end%>
 		<br><br>
 </div>

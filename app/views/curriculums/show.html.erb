@@ -28,6 +28,9 @@
 
   <div class="small-6 columns">
     <h2>Associated Camps</h2>
+  
+    <% if @camps.size > 0 %>
+
     <p>
       <table>
         <thead>
@@ -57,6 +60,11 @@
     <span class="paginate">
     <%= will_paginate @camps, :previous_label => "Previous&nbsp;", :next_label => "&nbsp;Next" %>
     </span>
+
+    <%else%>
+      <br>
+      <h5>There are no camps associated with this curriculum in the system</h5>
+    <%end%>
     <br><br>
   </div>
 </div>

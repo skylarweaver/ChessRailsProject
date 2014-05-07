@@ -38,11 +38,11 @@
               <% if can? :read, Instructor%>
               <li><%= link_to "Instructors", instructors_path %></li>
               <% end %>
-              <% if !current_user.nil? %>
+              <% if !current_user.nil? && current_user.role == "admin" %>
               <li><%= link_to "Students", students_path %></li>
               <% end %>
-              <% if !current_user.nil? && !current_user.role == "instructor" %>
-              <li><%= link_to "Locations", locations_path %></li>
+              <% if !current_user.nil? && current_user.role == "admin" %>
+                <li><%= link_to "Locations", locations_path %></li>
               <% end %>
               <% if can? :read, Family%>
               <li><%= link_to "Families", families_path %></li>

@@ -14,6 +14,11 @@
     </p>
 
     <p>
+      <strong>Rating:</strong>
+      <%= "#{@camp.curriculum.min_rating} - #{@camp.curriculum.max_rating}" %>   
+    </p>
+
+    <p>
       <strong>Dates:</strong>
       <%= @dates %>
     </p>
@@ -64,17 +69,13 @@
           <%end%>
 
           <% if !instructor.photo_url.nil? && !instructor.photo_url.include?("missing") %>
-            <td> <%= image_tag instructor.photo_url, size: "50x50" %> </td>
+            <td> <%= image_tag instructor.photo_url, size: "100x100" %> </td>
           <% else %>
-            <td> <%= image_tag "missing.png", size: "50x50" %> </td>
+            <td> <%= image_tag "missing.png", size: "100x100" %> </td>
           <%end%>
 
           <td><%= instructor.bio %></td>
           </tr>
-          <%else%>
-            <br>
-            <h5>There are no active instructors in the system</h5>
-          <%end%>
         <% end %>
       </tbody>
     </table>
@@ -82,6 +83,10 @@
     <span class="paginate">
     <%= will_paginate @instructors, :previous_label => "Previous&nbsp;", :next_label => "&nbsp;Next" %>
     </span>
+    <%else%>
+      <br>
+      <h5>There are no instructors asigned to this camp in the system</h5>
+    <%end%>
     <br><br>
   </div>
 
@@ -114,7 +119,7 @@
               <td><%="#{registration.student.last_name}, #{registration.student.first_name}"%></td>
             <% end %>
 
-            <td><%= registration.student.rating %></td>
+            <td><%= registration.student.rating == 0 ? "Unrated" : registration.student.rating %></td>
           </tr>
         <%end%>
       </tbody>
@@ -125,10 +130,16 @@
     </span>
     <br><br>
   </div>
+<%else%>
+    <br>
+    <h5>There are no registrations for this camp in the system</h5>
+<%end%>
 <% end %>
 
 <br><br><br>
+<% if can? :edit, Camp%>
 <%= render 'register_student' %>
+<% end %>
 
 
 <!--javascript-->

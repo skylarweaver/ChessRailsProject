@@ -1,5 +1,5 @@
 <h2>Listing Locations</h2>
-
+<% if @locations.size > 0 %>
 <table>
   <thead>
     <tr>
@@ -34,12 +34,16 @@
 <span class="paginate">
 <%= will_paginate @locations, :previous_label => "Previous&nbsp;", :next_label => "&nbsp;Next" %>
 </span>
+  <%else%>
+    <br>
+    <h5>There are no active locations in the system</h5>
+  <%end%>
 <br> <br>
 
 <br>
 
 <h2>Listing Inactive Locations</h2>
-
+<% if @inactiveLocations.size > 0 %>
 <table>
   <thead>
     <tr>
@@ -67,6 +71,12 @@
 <span class="paginate">
 <%= will_paginate @inactiveLocations, :previous_label => "Previous&nbsp;", :next_label => "&nbsp;Next" %>
 </span>
+  <%else%>
+    <br>
+    <h5>There are no inactive locations in the system</h5>
+  <%end%>
 <br> <br>
 
+<% if can? :create, Location %>
 <%= link_to 'New Location', new_location_path, class: "button extended round radius" %>
+<%end%>

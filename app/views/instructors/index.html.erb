@@ -1,5 +1,7 @@
 <h2>Active Instructors</h2>
 
+<% if @instructors.size > 0 %>
+
 <table>
   <thead>
     <tr>
@@ -14,7 +16,11 @@
   <tbody>
     <% @instructors.each do |instructor| %>
       <tr>
+        <% if can? :read, instructor %>
         <td><%= link_to "#{instructor.last_name}, #{instructor.first_name}", instructor %></td>
+        <% else %>
+          <td><%="#{instructor.last_name}, #{instructor.first_name}"%></td>
+        <%end%>
         <td><%= mail_to("#{instructor.email}", "#{instructor.email}", :encode => "javascript") %></td>
         <td><%= number_to_phone(instructor.phone) %></td>
         <td><%= instructor.camps.size %></td>
@@ -29,11 +35,15 @@
     <span class="paginate">
     <%= will_paginate @instructors, :previous_label => "Previous&nbsp;", :next_label => "&nbsp;Next" %>
     </span>
-
+  <%else%>
+    <br>
+    <h5>There are no active instructors in the system</h5>
+  <%end%>
 <br>
 
 <br> <br>
 <h2>Inactive Instructors</h2>
+<% if @inactiveInstructors.size > 0 %>
 
 <table>
   <thead>
@@ -47,8 +57,11 @@
   <tbody>
     <% @inactiveInstructors.each do |instructor| %>
       <tr>
+        <% if can? :read, instructor %>
         <td><%= link_to "#{instructor.last_name}, #{instructor.first_name}", instructor %></td>
-        <td><%= instructor.email %></td>
+        <% else %>
+          <td><%="#{instructor.last_name}, #{instructor.first_name}"%></td>
+        <%end%>        <td><%= instructor.email %></td>
         <td><%= link_to 'Edit', edit_instructor_path(instructor), class: "button tiny radius" %></td>
       </tr>
     <% end %>
@@ -58,7 +71,10 @@
     <span class="paginate">
     <%= will_paginate @instructors, :previous_label => "Previous&nbsp;", :next_label => "&nbsp;Next" %>
     </span>
-
+  <%else%>
+    <br>
+    <h5>There are no inactive instructors in the system</h5>
+  <%end%>
 <br><br>
 
 <%= link_to 'New Instructor', new_instructor_path, class: "button extended round radius" %>

@@ -53,7 +53,7 @@
   </div>
   <div class="small-6 columns right">
     <h2>Upcoming Camps</h2>
-
+    <% if @upcomingCamps.size > 0 %>
     <table>
       <thead>
         <tr>
@@ -74,11 +74,15 @@
     <span class="paginate">
     <%= will_paginate @upcomingCamps, :previous_label => "Previous&nbsp;", :next_label => "&nbsp;Next" %>
     </span>
+  <%else%>
+    <br>
+    <h5>There are no upcoming camps for this instructor in the system</h5>
+  <%end%>
     <br><br>
   </div>
   <div class="small-6 columns right">
     <h2>Past Camps</h2>
-
+    <% if @pastCamps.size > 0 %>
     <table>
       <thead>
         <tr>
@@ -99,6 +103,10 @@
     <span class="paginate">
     <%= will_paginate @pastCamps, :previous_label => "Previous&nbsp;", :next_label => "&nbsp;Next" %>
     </span>
+      <%else%>
+        <br>
+        <h5>There are no past camps for this instructor in the system</h5>
+      <%end%>
     <br><br>
   </div>
 </div>

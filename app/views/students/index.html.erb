@@ -1,5 +1,5 @@
 <h2>Listing Students</h2>
-
+<% if @allStudents.size > 0 %>
 <table>
   <thead>
     <tr>
@@ -31,10 +31,14 @@
 <span class="paginate">
 <%= will_paginate @allStudents, :previous_label => "Previous&nbsp;", :next_label => "&nbsp;Next" %>
 </span>
+  <%else%>
+    <br>
+    <h5>There are no active students in the system</h5>
+  <%end%>
 <br> <br>
 
 <h2>Listing Inactive Students</h2>
-
+<% if @inactiveStudents.size > 0 %>
 <table>
   <thead>
     <tr>
@@ -64,6 +68,10 @@
 <span class="paginate">
 <%= will_paginate @inactiveStudents, :previous_label => "Previous&nbsp;", :next_label => "&nbsp;Next" %>
 </span>
+  <%else%>
+    <br>
+    <h5>There are no inactive students in the system</h5>
+  <%end%>
 <br> <br>
 
 <%= link_to 'New Student', new_student_path, class: "button extended round radius" %>

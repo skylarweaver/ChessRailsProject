@@ -1,5 +1,7 @@
 <h2>Active Curriculums</h2>
 
+<% if @curriculums.size > 0 %>
+
 <table>
   <thead>
     <tr>
@@ -25,10 +27,17 @@
     <span class="paginate">
     <%= will_paginate @curriculums, :previous_label => "Previous&nbsp;", :next_label => "&nbsp;Next" %>
     </span>
+<%else%>
+  <br>
+  <h5>There are no active curriculums in the system</h5>
+<%end%>
 <br>
 
 <br> <br>
 <h2>Inactive Curriculums</h2>
+
+<% if @inactiveCurriculums.size > 0 %>
+
 <table>
   <thead>
     <tr>
@@ -52,5 +61,11 @@
     <span class="paginate">
     <%= will_paginate @curriculums, :previous_label => "Previous&nbsp;", :next_label => "&nbsp;Next" %>
     </span>
+
+<%else%>
+  <br>
+  <h5>There are no inactive curriculums in the system</h5>
+<%end%>
+
 <br><br>
 <%= link_to 'New Curriculum', new_curriculum_path, class: "button round radius"%>

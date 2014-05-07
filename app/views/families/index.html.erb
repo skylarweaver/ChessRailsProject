@@ -1,5 +1,6 @@
 <h2>Listing Families</h2>
 
+<% if @families.size > 0 %>
 <table>
   <thead>
     <tr>
@@ -27,6 +28,11 @@
 <span class="paginate">
 <%= will_paginate @families, :previous_label => "Previous&nbsp;", :next_label => "&nbsp;Next" %>
 </span>
+
+<%else%>
+  <br>
+  <h5>There are no active families in the system</h5>
+<%end%>
 <br><br>
 
 <h2>Listing Inactive Families</h2>
@@ -58,7 +64,7 @@
   </span>
 <%else%>
   <br>
-  <h4>There are no inactive families in the system</h2>
+  <h5>There are no inactive families in the system</h5>
 <%end%>
 
 <br><br>

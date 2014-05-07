@@ -29,6 +29,7 @@
     </div>
       <div class="small-7 columns right">
       <h2>Camps at <%=@location.name%></h2>
+      <% if @camps.size > 0 %>
         <table>
           <thead>
             <tr>
@@ -49,6 +50,10 @@
         <span class="paginate">
         <%= will_paginate @camps, :previous_label => "Previous&nbsp;", :next_label => "&nbsp;Next" %>
         </span>
+        <%else%>
+          <br>
+          <h5>There are no active camps at this location</h5>
+        <%end%>
         <br><br>
       </div>
       <div class="small-7 columns right"> 
@@ -59,12 +64,15 @@
       </div>
     </div>
   </div>
-</div>
-
+  
 <% if can? :edit, Location %>
   <%= link_to 'Edit', edit_location_path(@location) %> |
 <% end %>
-<%= link_to 'Back', locations_path %>
+<% if current_user.present? %>
+  <% if can? :edit, Location %>
+  <%= link_to 'Back', locations_path %>
+  <% end %>
+<% end %>
 <br><br>
 
 <!--javascript-->
