@@ -1,0 +1,14 @@
+<%= simple_form_for @registration, :html => { :class => 'form-horizontal' } do |f| %>
+  <fieldset>
+    <legend>Register a student for this camp</legend>
+    
+    <%= f.input :student_id, label_method: :name, :collection => @eligableStudents, as: :select%>
+    <%= f.input :camp_id, :as => :hidden, :input_html => { :value => @camp.id } %>
+    <%= f.input :payment_status, collection: ["deposit", "full"], as: :select %>
+    <%= f.input :points_earned %>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+  </fieldset>
+<% end %>

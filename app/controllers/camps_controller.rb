@@ -19,12 +19,18 @@ class CampsController < ApplicationController
     @camp = Camp.find(params[:id])
     @camp.time_slot == "am" ? @timeSlot = "Morning" : @timeSlot = "Afternoon"
     @location = @camp.location
-    @registrations = @camp.registrations.paginate(page: params[:page]).per_page(10)
+    @registrations = @camp.registrations.by_student.paginate(page: params[:page]).per_page(10)
     @instructors = @camp.instructors.alphabetical.paginate(page: params[:page]).per_page(4)
     @dates = "#{@camp.start_date.strftime("%m/%d/%y")} - #{@camp.end_date.strftime("%m/%d/%y")}"
     @camp.active ? @status = "Active" : @status = "Inactive"
     @registrationSize = @camp.registrations.size
-
+    @eligableStudents = []
+    Student.active.alphabetical.each do |student|
+      if student.rating >= @camp.curriculum.min_rating && student.rating <= @camp.curriculum.max_rating
+        @eligableStudents << student
+      end
+    end
+    @registration = Registration.new
   end
 
   # GET /camps/new

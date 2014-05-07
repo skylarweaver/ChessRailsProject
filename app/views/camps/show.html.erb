@@ -45,6 +45,7 @@
 
   <div class="small-7 columns right">
     <h2>Camp Instructors</h2>
+    <% if @instructors.size > 0 %>
     <table>
       <thead>
         <tr>
@@ -70,6 +71,10 @@
 
           <td><%= instructor.bio %></td>
           </tr>
+          <%else%>
+            <br>
+            <h5>There are no active instructors in the system</h5>
+          <%end%>
         <% end %>
       </tbody>
     </table>
@@ -79,6 +84,8 @@
     </span>
     <br><br>
   </div>
+
+
   <div class="small-7 columns right">
     <div >
       <h2>Camp Location</h2>
@@ -90,6 +97,7 @@
 <% if !current_user.nil? %>
   <div class="small-7 columns left">
     <h2><%="Registrations (#{@registrationSize})"%></h2>
+    <% if @registrations.size > 0 %>
     <table>
       <thead>
         <tr>
@@ -119,7 +127,9 @@
   </div>
 <% end %>
 
-<br><br>
+<br><br><br>
+<%= render 'register_student' %>
+
 
 <!--javascript-->
 <script>

@@ -1,5 +1,6 @@
 <h2>Upcoming Camps</h2>
 
+<% if @upcomingCamps.size > 0 %>
 <table>
   <thead>
     <tr>
@@ -24,6 +25,10 @@
     <% end %>
   </tbody>
 </table>
+<%else%>
+  <br>
+  <h5>There are no upcoming camps in the system</h5>
+<%end%>
 
 <!-- Add the pagination using will_paginate gem -->
 <span class="paginate">
@@ -33,6 +38,7 @@
 
 <% if current_user.present? %> 
  <h2>Past Camps</h2>
+<% if @pastCamps.size >0 %>
   <table>
     <thead>
       <tr>
@@ -57,10 +63,15 @@
     </tbody>
   </table>
 
+
   <!-- Add the pagination using will_paginate gem -->
   <span class="paginate">
   <%= will_paginate @pastCamps, :previous_label => "Previous&nbsp;", :next_label => "&nbsp;Next" %>
   </span>
+<%else%>
+  <br>
+  <h5>There are no past camps in the system</h5>
+<%end%>
 <%end%>
 <br>
 
