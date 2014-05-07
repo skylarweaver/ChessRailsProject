@@ -27,9 +27,14 @@ body{
 .button.tiny.radius{
   margin-top: 1em;
   margin-bottom: 1em;
+  background-color: #52777a;
 }
 .button.tiny.radius.alert{
   margin-right: 1em;
+}
+
+.button{
+    background-color: #52777a;
 }
 
 .contain-to-grid{
@@ -78,6 +83,39 @@ h1#navTitle{
 #login{
   font-size: 0.8125rem;
   margin-top: 2px;
+}
+
+table {
+    display: table;
+    border-collapse: separate;
+    border-spacing: 2px;
+    border-color: #c2263f;
+}
+
+thead {
+    display: table-header-group;
+    vertical-align: middle;
+    border-color: inherit
+}
+
+tbody {
+    display: table-row-group;
+    vertical-align: middle;
+    border-color: inherit
+}
+
+a {
+  color: #DB6A53
+}
+th{
+  background-color: #ECFAFB;
+}
+tr{
+  background-color: #F5F5F5
+}
+
+tr:nth-child(even){
+  background-color: #ECFAFB;
 }
 
 /*.top-bar-section ul {

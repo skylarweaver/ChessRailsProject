@@ -19,7 +19,7 @@
 		    <% @upcomingCamps.each do |camp| %>
 		      <tr>
 		        <td><%= link_to "#{camp.name}", camp %></td>
-		        <td><%= camp.start_date.strftime("%m/%d/%y") %></td>
+		        <td><%= camp.start_date.to_formatted_s(:long) %></td>
 		        <td><%= camp.instructors.size %></td>
 		        <td><%= camp.students.size %></td>
 		        </tr>
@@ -58,7 +58,7 @@
 		        <td><%= mail_to("#{instructor.email}", "#{instructor.email}", :encode => "javascript") %></td>
 		        <td><%= instructor.camps.size %></td>
 		        <% if instructor.camps.size > 0 %>
-			        <td><%= instructor.camps.chronological.first.start_date.strftime("%m/%d/%y")%></td>
+			        <td><%= instructor.camps.chronological.first.start_date.to_formatted_s(:long)%></td>
 			    <% end %>
 		        <% if can? :edit, instructor%>
 		          <td><%= link_to 'Edit', edit_instructor_path(instructor), class: "button tiny radius" %></td>

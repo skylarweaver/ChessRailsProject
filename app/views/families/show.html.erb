@@ -77,7 +77,7 @@
           <tr>
             <td><%= link_to camp.name, camp_path(camp.id) %></td>
             <td><%= name %></td>
-            <td><%= camp.start_date %></td>
+            <td><%= camp.start_date.to_formatted_s(:long) %></td>
             <td><%= camp.location.name %></td>
           </tr>
         <%end%>

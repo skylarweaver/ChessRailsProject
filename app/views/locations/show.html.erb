@@ -41,7 +41,7 @@
             <% @camps.each do |camp| %>
               <tr>
               <td><%= link_to "#{camp.name}", camp%></td>
-                <td><%= camp.start_date %></td>
+                <td><%= camp.start_date.to_formatted_s(:long) %></td>
               </tr>
             <% end %>
           </tbody>

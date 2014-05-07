@@ -19,7 +19,7 @@
           <td><%= student.age %></td>
           <td><%= student.rating == 0 ? "Unrated" : student.rating %> </td>
           <% if can? :edit, student%>
-            <td><%= link_to 'Edit', edit_student_path(student) %></td>
+            <td><%= link_to 'Edit', edit_student_path(student), class: "button tiny radius"  %></td>
           <%end%>
         </tr>
     <% end %>
@@ -56,7 +56,7 @@
           <td><%=link_to "#{student.last_name}, #{student.first_name}",student %></td>
           <td><%= student.age %></td>
           <% if can? :edit, student%>
-            <td><%= link_to 'Edit', edit_student_path(student) %></td>
+            <td><%= link_to 'Edit', edit_student_path(student),  class: "button tiny radius"  %></td>
           <%end%>
         </tr>
     <% end %>
