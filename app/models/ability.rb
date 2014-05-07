@@ -8,7 +8,7 @@ class Ability
         if user.role? :admin
             can :manage, :all
         elsif user.role? :instructor
-            can :update, Instructor do |instructor|  
+            can [:read, :update], Instructor do |instructor|  
                 instructor.id == user.instructor_id
             end
             can :destroy, Instructor do |instructor|  
@@ -24,11 +24,13 @@ class Ability
                 end
                 my_students.include? student.id 
             end
+            can :read, Location
             can :read, Camp
         else
             #this is not being read
             #default role is set to instructor so never reaches here 
             can :read, Camp
+            can :read, Location
             cannot :read, Student
         end
     #

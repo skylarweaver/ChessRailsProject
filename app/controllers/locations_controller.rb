@@ -6,8 +6,8 @@ class LocationsController < ApplicationController
   # GET /locations
   # GET /locations.json
   def index
-    @locations = Location.active.alphabetical
-    @inactiveLocations = Location.inactive.alphabetical
+    @locations = Location.active.alphabetical.paginate(page: params[:page]).per_page(10)
+    @inactiveLocations = Location.inactive.alphabetical.paginate(page: params[:page]).per_page(10)
   end
 
   # GET /locations/1

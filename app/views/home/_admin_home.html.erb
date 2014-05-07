@@ -51,7 +51,9 @@
 		        <td><%= link_to "#{instructor.last_name}, #{instructor.first_name}", instructor %></td>
 		        <td><%= mail_to("#{instructor.email}", "#{instructor.email}", :encode => "javascript") %></td>
 		        <td><%= instructor.camps.size %></td>
-		        <td><%= instructor.camps.chronological.first.start_date.strftime("%m/%d/%y")%></td>
+		        <% if instructor.camps.size > 0 %>
+			        <td><%= instructor.camps.chronological.first.start_date.strftime("%m/%d/%y")%></td>
+			    <% end %>
 		        <% if can? :edit, instructor%>
 		          <td><%= link_to 'Edit', edit_instructor_path(instructor), class: "button tiny radius" %></td>
 		        <%end%>

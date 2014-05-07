@@ -15,11 +15,12 @@
         <%= raw("<br>") if !@location.street_2.blank? %>
         <%= "#{@location.city}, #{@location.state} #{@location.zip}"%>
       </p>
-
-      <p>
-        <strong>Maximum Capacity:</strong>
-        <%= @location.max_capacity %>
-      </p>
+      <% if can? :edit, Location%>
+        <p>
+          <strong>Maximum Capacity:</strong>
+          <%= @location.max_capacity %>
+        </p>
+      <%end%>
 
       <p>
         <strong>Status:</strong>
@@ -60,7 +61,9 @@
   </div>
 </div>
 
-<%= link_to 'Edit', edit_location_path(@location) %> |
+<% if can? :edit, Location %>
+  <%= link_to 'Edit', edit_location_path(@location) %> |
+<% end %>
 <%= link_to 'Back', locations_path %>
 <br><br>
 

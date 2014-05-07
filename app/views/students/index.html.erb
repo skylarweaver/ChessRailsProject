@@ -27,6 +27,12 @@
 </table>
 <br>
 
+<!-- Add the pagination using will_paginate gem -->
+<span class="paginate">
+<%= will_paginate @allStudents, :previous_label => "Previous&nbsp;", :next_label => "&nbsp;Next" %>
+</span>
+<br> <br>
+
 <h2>Listing Inactive Students</h2>
 
 <table>
@@ -53,5 +59,11 @@
   </tbody>
 </table>
 <br>
+
+<!-- Add the pagination using will_paginate gem -->
+<span class="paginate">
+<%= will_paginate @inactiveStudents, :previous_label => "Previous&nbsp;", :next_label => "&nbsp;Next" %>
+</span>
+<br> <br>
 
 <%= link_to 'New Student', new_student_path, class: "button extended round radius" %>

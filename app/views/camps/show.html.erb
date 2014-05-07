@@ -49,18 +49,26 @@
       <thead>
         <tr>
           <th>Name</th>
+          <th>Photo</th>
           <th>Bio</th>
         </tr>
       </thead>
       <tbody>
         <% @instructors.each do |instructor| %>
           <tr>
-          <% if current_user.present? %>
+          <% if current_user.present? && current_user == instructor.user %>
             <td><%= link_to "#{instructor.last_name}, #{instructor.first_name}", instructor %></td>
           <%else%>
             <td><%="#{instructor.last_name}, #{instructor.first_name}"%></td>
           <%end%>
-            <td><%= instructor.bio %></td>
+
+          <% if !instructor.photo_url.nil? && !instructor.photo_url.include?("missing") %>
+            <td> <%= image_tag instructor.photo_url, size: "50x50" %> </td>
+          <% else %>
+            <td> <%= image_tag "missing.png", size: "50x50" %> </td>
+          <%end%>
+
+          <td><%= instructor.bio %></td>
           </tr>
         <% end %>
       </tbody>
@@ -79,6 +87,7 @@
   </div>
 </div>
 
+<% if !current_user.nil? %>
   <div class="small-7 columns left">
     <h2><%="Registrations (#{@registrationSize})"%></h2>
     <table>
@@ -91,7 +100,12 @@
       <tbody>
         <% @registrations.each do |registration| %>
           <tr>
-            <td><%=link_to "#{registration.student.last_name}, #{registration.student.first_name}", registration.student %></td>
+            <% if can? :read, registration.student %>
+              <td><%=link_to "#{registration.student.last_name}, #{registration.student.first_name}", registration.student %></td>
+            <% else %>
+              <td><%="#{registration.student.last_name}, #{registration.student.first_name}"%></td>
+            <% end %>
+
             <td><%= registration.student.rating %></td>
           </tr>
         <%end%>
@@ -103,7 +117,9 @@
     </span>
     <br><br>
   </div>
+<% end %>
 
+<br><br>
 
 <!--javascript-->
 <script>
@@ -126,3 +142,4 @@
     handler.getMap().setZoom(12);
   });
 </script>
+

@@ -9,10 +9,10 @@
     </p>
 
     <p>
-    <% if @band.photo_url.nil? || @band.photo_url.include?("missing") %>
+    <% if @instructor.photo_url.nil? || @instructor.photo_url.include?("missing") %>
       <%= image_tag "missing.png" %>
     <% else %>
-      <%= image_tag @band.photo_url %>
+      <%= image_tag @instructor.photo_url, size: "150x150" %>
     <% end %>
     </p>
 

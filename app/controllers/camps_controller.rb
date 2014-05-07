@@ -19,7 +19,7 @@ class CampsController < ApplicationController
     @camp = Camp.find(params[:id])
     @camp.time_slot == "am" ? @timeSlot = "Morning" : @timeSlot = "Afternoon"
     @location = @camp.location
-    @registrations = @camp.registrations.paginate(page: params[:page]).per_page(4)
+    @registrations = @camp.registrations.paginate(page: params[:page]).per_page(10)
     @instructors = @camp.instructors.alphabetical.paginate(page: params[:page]).per_page(4)
     @dates = "#{@camp.start_date.strftime("%m/%d/%y")} - #{@camp.end_date.strftime("%m/%d/%y")}"
     @camp.active ? @status = "Active" : @status = "Inactive"

@@ -13,7 +13,7 @@ class StudentsController < ApplicationController
     # @specificStudents = @allStudents.map { |student| student if (can? :read, student)}
     # @allStudents = @allStudents.accessible_by(current_ability)
     # @specificStudents = @specificStudents.paginate(:page => params[:page], :per_page => 30)
-    @allStudents.paginate(page: params[:page]).per_page(4)
+    # @allStudents.paginate(page: params[:page]).per_page(4)
   end
 
   # GET /students/1

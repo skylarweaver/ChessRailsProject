@@ -6,7 +6,9 @@
       <th>Name</th>
       <th>Address</th>
       <th>Capacity</th>
-      <th></th>
+      <% if can? :edit, Location %>
+        <th></th>
+      <% end %>
     </tr>
   </thead>
 
@@ -21,11 +23,18 @@
           <%= "#{location.city}, #{location.state} #{location.zip}"%>
         </td>
         <td> <%=location.max_capacity%></td>
-        <td><%= link_to 'Edit', edit_location_path(location) %></td>
+        <% if can? :edit, Location%>
+          <td><%= link_to 'Edit', edit_location_path(location), class: "button tiny round radius" %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
 </table>
+
+<span class="paginate">
+<%= will_paginate @locations, :previous_label => "Previous&nbsp;", :next_label => "&nbsp;Next" %>
+</span>
+<br> <br>
 
 <br>
 
@@ -54,5 +63,10 @@
     <% end %>
   </tbody>
 </table>
+
+<span class="paginate">
+<%= will_paginate @inactiveLocations, :previous_label => "Previous&nbsp;", :next_label => "&nbsp;Next" %>
+</span>
+<br> <br>
 
 <%= link_to 'New Location', new_location_path, class: "button extended round radius" %>

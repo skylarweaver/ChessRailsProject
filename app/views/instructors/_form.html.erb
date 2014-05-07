@@ -19,7 +19,7 @@
           <%= i_form.input :bio %>
           </div>
           <div class = "small-6 columns">
-            <%= i_form.input :photo%>
+            <%= i_form.input :photo, as: :file%>
           </div>
           <% if current_user.nil? || current_user.role == "Instructor"%>
             <div class="small-12 columns">
@@ -43,7 +43,7 @@
                         <div class="small-6 columns">
                             <%= user_form.input :password_confirmation, label: "Confirm Password"%>
                         </div>
-                        <% if current_user.nil? || current_user.role != "Instructor"%>
+                        <% if current_user.role = "admin"%>
                           <div class="small-6 columns">  
                               <%= user_form.input :role, collection: User::ROLES, :prompt => true%>
                           </div>
