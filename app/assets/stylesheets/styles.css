@@ -104,6 +104,8 @@ tbody {
     border-color: inherit
 }
 
+
+
 a {
   color: #DB6A53
 }
@@ -118,6 +120,19 @@ tr:nth-child(even){
   background-color: #ECFAFB;
 }
 
+ a.current_view{
+  background-color: #272727;
+}
+
+.top-bar-section ul li > a{
+    background-color: #272727;
+
+}
+
+.top-bar-section li:not(.has-form) a:not(.button).current_view{
+      background-color: #272727;
+
+}
 /*.top-bar-section ul {
     background: none;
     text-transform: uppercase;

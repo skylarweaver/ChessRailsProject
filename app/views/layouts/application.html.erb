@@ -12,9 +12,9 @@
     <script src='//google-maps-utility-library-v3.googlecode.com/svn/tags/markerclustererplus/2.0.14/src/markerclusterer_packed.js' type='text/javascript'></script>
 
     <%= stylesheet_link_tag "application" %>
-    <%= stylesheet_link_tag "styles"%>
     <%= javascript_include_tag "vendor/modernizr" %>
     <%= csrf_meta_tags %>
+    <%= stylesheet_link_tag "styles"%>
   </head>
 
   <body>
@@ -30,22 +30,22 @@
           <section class="top-bar-section center">
             <ul class="left"  id = "topLinks">
               <% if can? :read, Camp%>
-              <li><%= link_to "Camps", camps_path %></li> 
+                <li><%= link_to "Camps", camps_path, class: (params[:controller] == "camps" ? "current_view" : "not_current_view") %></li> 
               <% end %>
               <% if can? :read, Curriculum%>
-              <li><%= link_to "Curriculums", curriculums_path %></li>
+                <li><%= link_to "Curriculums", curriculums_path, class: (params[:controller] == "curriculums" ? "current_view" : "not_current_view") %></li>
               <% end %>
               <% if can? :read, Instructor%>
-              <li><%= link_to "Instructors", instructors_path %></li>
+                <li><%= link_to "Instructors", instructors_path, class: (params[:controller] == "instructors" ? "current_view" : "not_current_view") %></li>
               <% end %>
               <% if !current_user.nil? && current_user.role == "admin" %>
-              <li><%= link_to "Students", students_path %></li>
+                <li><%= link_to "Students", students_path, class: (params[:controller] == "students" ? "current_view" : "not_current_view") %></li>
               <% end %>
               <% if !current_user.nil? && current_user.role == "admin" %>
-                <li><%= link_to "Locations", locations_path %></li>
+                  <li><%= link_to "Locations", locations_path, class: (params[:controller] == "locations" ? "current_view" : "not_current_view") %></li>
               <% end %>
               <% if can? :read, Family%>
-              <li><%= link_to "Families", families_path %></li>
+                <li><%= link_to "Families", families_path, class: (params[:controller] == "families" ? "current_view" : "not_current_view") %></li>
               <% end %>
             </ul>
           </section>
