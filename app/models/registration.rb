@@ -30,6 +30,10 @@ class Registration < ActiveRecord::Base
     end
   end
 
+  def size
+    self.count
+  end
+
   def student_is_not_already_registered_to_another_camp_at_same_time
     return true if self.camp.nil? || self.student.nil?
     students_registered_at_that_time = Camp.where(start_date: self.camp.start_date, time_slot: self.camp.time_slot).map{|c| c.students }.flatten

@@ -23,7 +23,7 @@
         <%end%>
         <td><%= mail_to("#{instructor.email}", "#{instructor.email}", :encode => "javascript") %></td>
         <td><%= number_to_phone(instructor.phone) %></td>
-        <td><%= instructor.camps.size %></td>
+        <td><%= instructor.camps.count %></td>
         <% if can? :edit, instructor%>
           <td><%= link_to 'Edit', edit_instructor_path(instructor), class: "button tiny radius" %></td>
         <%end%>

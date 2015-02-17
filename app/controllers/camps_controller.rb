@@ -23,7 +23,7 @@ class CampsController < ApplicationController
     @instructors = @camp.instructors.alphabetical.paginate(page: params[:page]).per_page(4)
     @dates = "#{@camp.start_date.strftime("%m/%d/%y")} - #{@camp.end_date.strftime("%m/%d/%y")}"
     @camp.active ? @status = "Active" : @status = "Inactive"
-    @registrationSize = @camp.registrations.size
+    @registrationSize = @camp.registrations.count
     @eligableStudents = []
     Student.active.alphabetical.each do |student|
       if student.rating >= @camp.curriculum.min_rating && student.rating <= @camp.curriculum.max_rating

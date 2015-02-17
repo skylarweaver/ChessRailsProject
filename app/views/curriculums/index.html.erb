@@ -17,7 +17,7 @@
       <tr>
         <td><%= link_to "#{curriculum.name}", curriculum %></td>
         <td><%= "#{curriculum.min_rating > 0 ? curriculum.min_rating : "Unrated"} - #{curriculum.max_rating}" %></td>
-        <td><%= curriculum.camps.size %></td>
+        <td><%= curriculum.camps.count %></td>
         <td ><%= link_to 'Edit', edit_curriculum_path(curriculum), class: "button tiny radius" %></td>
       </tr>
     <% end %>

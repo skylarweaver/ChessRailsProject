@@ -39,6 +39,10 @@ class Camp < ActiveRecord::Base
     self.curriculum.name
   end
 
+  def size
+    self.count
+  end
+
   def already_exists?
     Camp.where(time_slot: self.time_slot, start_date: self.start_date, location_id: self.location_id).size == 1
   end

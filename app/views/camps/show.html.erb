@@ -50,7 +50,7 @@
 
   <div class="small-7 columns right">
     <h2>Camp Instructors</h2>
-    <% if @instructors.size > 0 %>
+    <% if @instructors.count > 0 %>
     <table>
       <thead>
         <tr>
@@ -102,7 +102,7 @@
 <% if !current_user.nil? %>
   <div class="small-7 columns left">
     <h2><%="Registrations (#{@registrationSize})"%></h2>
-    <% if @registrations.size > 0 %>
+    <% if @registrations.count > 0 %>
     <table>
       <thead>
         <tr>

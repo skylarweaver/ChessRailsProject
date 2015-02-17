@@ -56,8 +56,8 @@
 		      <tr>
 		        <td><%= link_to "#{instructor.last_name}, #{instructor.first_name}", instructor %></td>
 		        <td><%= mail_to("#{instructor.email}", "#{instructor.email}", :encode => "javascript") %></td>
-		        <td><%= instructor.camps.size %></td>
-		        <% if instructor.camps.size > 0 %>
+		        <td><%= instructor.camps.count %></td>
+		        <% if instructor.camps.count > 0 %>
 			        <td><%= instructor.camps.chronological.first.start_date.to_formatted_s(:long)%></td>
 			    <% end %>
 		        <% if can? :edit, instructor%>
