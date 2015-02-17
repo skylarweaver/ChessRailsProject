@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery_nested_form
+//= require jquery-ui/datepicker
 //= require foundation
 //= require turbolinks
 //= require_tree .
@@ -20,7 +21,7 @@
 //= require gmaps/google
 //= require underscore
 //= require foundation-datetimepicker
-//= require jquery.ui.datepicker
+//= require jquery-ui/datepicker
 
 
 

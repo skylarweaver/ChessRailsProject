@@ -6,9 +6,6 @@ gem 'rails', '4.0.3'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 
-# Use SCSS for stylesheets
-gem 'sass-rails', '~> 4.0.0'
-
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 
@@ -18,6 +15,7 @@ gem 'coffee-rails', '~> 4.0.0'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
+gem 'sass-rails'#, '~> 5.0.0'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 
@@ -42,7 +40,7 @@ gem 'validates_timeliness'
 gem 'simple_form'
 
 # Use foundation for base CSS
-gem 'foundation-rails'
+gem "foundation-rails", "5.4.5"
 
 # Use geocoder to get latitude and longitude data
 gem 'geocoder'
@@ -69,6 +67,8 @@ gem 'cancancan', '~> 1.7'
 #Datepicker
 gem 'foundation-datetimepicker-rails'
 gem 'jquery-ui-rails'
+
+gem 'eventmachine'
 
 
 # Additional gems that are very useful in Rails development
